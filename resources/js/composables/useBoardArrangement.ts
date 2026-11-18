@@ -11,8 +11,15 @@ export function useBoardArrangement(slotIds: string[], imageIds: number[]) {
     const order = ref<number[]>([]);
     const lists = reactive<Record<string, number[]>>({});
 
-    function reset(placements: Record<string, number> | null = null): void {
-        order.value = shuffle(imageIds);
+    /**
+     * Put every unplaced image back in the tray. Shuffling is random, so the first (server-rendered)
+     * pass keeps the original order and the board shuffles once it is mounted in the browser.
+     */
+    function reset(
+        placements: Record<string, number> | null = null,
+        { shuffled = true }: { shuffled?: boolean } = {},
+    ): void {
+        order.value = shuffled ? shuffle(imageIds) : [...imageIds];
 
         const placed = new Set(Object.values(placements ?? {}));
         lists[TRAY] = order.value.filter((imageId) => !placed.has(imageId));

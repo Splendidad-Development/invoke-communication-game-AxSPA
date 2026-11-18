@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nextTick, onBeforeUnmount, ref, watch } from 'vue';
+import { nextTick, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { cn } from '@/lib/utils';
 
 const props = withDefaults(
@@ -23,37 +23,51 @@ const emit = defineEmits<{ close: [] }>();
 const panel = ref<HTMLElement | null>(null);
 let previouslyFocused: HTMLElement | null = null;
 
+/**
+ * The dialog only renders in the browser. Lifecycle hooks don't run during SSR, so the server and the
+ * hydrating client both render a plain placeholder (no Teleport), and the DOM is only touched once mounted.
+ */
+const isMounted = ref(false);
+
 function onKeydown(event: KeyboardEvent): void {
     if (event.key === 'Escape') {
         emit('close');
     }
 }
 
+async function activate(): Promise<void> {
+    previouslyFocused = document.activeElement as HTMLElement | null;
+    document.addEventListener('keydown', onKeydown);
+    await nextTick();
+    panel.value
+        ?.querySelector<HTMLElement>('[data-autofocus], button')
+        ?.focus({ preventScroll: true });
+}
+
+function deactivate(): void {
+    document.removeEventListener('keydown', onKeydown);
+    previouslyFocused?.focus?.({ preventScroll: true });
+    previouslyFocused = null;
+}
+
+onMounted(() => {
+    isMounted.value = true;
+
+    if (props.open) {
+        void activate();
+    }
+});
+
 watch(
     () => props.open,
-    async (isOpen) => {
-        if (isOpen) {
-            previouslyFocused = document.activeElement as HTMLElement | null;
-            document.addEventListener('keydown', onKeydown);
-            await nextTick();
-            panel.value
-                ?.querySelector<HTMLElement>('[data-autofocus], button')
-                ?.focus({ preventScroll: true });
-
-            return;
-        }
-
-        document.removeEventListener('keydown', onKeydown);
-        previouslyFocused?.focus?.({ preventScroll: true });
-    },
-    { immediate: true },
+    (isOpen) => (isOpen ? void activate() : deactivate()),
 );
 
 onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown));
 </script>
 
 <template>
-    <Teleport to="body">
+    <Teleport v-if="isMounted" to="body">
         <div
             v-if="open"
             class="fixed inset-0 z-100 flex items-center justify-center bg-[rgb(10_10_24/.72)] p-4 backdrop-blur-md"

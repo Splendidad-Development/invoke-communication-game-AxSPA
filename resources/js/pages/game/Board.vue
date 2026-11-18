@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Head, router, usePage } from '@inertiajs/vue3';
 import { VueDraggable } from 'vue-draggable-plus';
-import { computed, onBeforeUnmount, ref, watch } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import BoardColumnHeading from '@/components/game/BoardColumnHeading.vue';
 import BoardSection from '@/components/game/BoardSection.vue';
 import ColourKey from '@/components/game/ColourKey.vue';
@@ -42,7 +42,9 @@ const board = useBoardArrangement(
     props.images.map((image) => image.id),
 );
 
-board.reset(props.result?.placements ?? null);
+// Deterministic on the server and during hydration; shuffled once mounted in the browser.
+board.reset(props.result?.placements ?? null, { shuffled: false });
+onMounted(() => board.reset(props.result?.placements ?? null));
 
 const isLocked = computed(() => props.result !== null);
 const isResultOpen = ref(props.result !== null);
