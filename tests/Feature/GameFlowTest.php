@@ -1,0 +1,140 @@
+<?php
+
+use App\Models\Answer;
+use App\Models\Arrangement;
+use App\Models\Player;
+use Database\Factories\ArrangementFactory;
+use Inertia\Testing\AssertableInertia as Assert;
+
+function playAs(Player $player): void
+{
+    test()->withSession(['player_id' => $player->id]);
+}
+
+it('shows the name screen', function () {
+    $this->get(route('game.welcome'))
+        ->assertOk()
+        ->assertInertia(fn (Assert $page) => $page->component('game/Welcome'));
+});
+
+it('registers a player and remembers them in the session', function () {
+    $this->post(route('players.store'), ['name' => '  Sara  '])
+        ->assertRedirect(route('game.groups'))
+        ->assertSessionHas('player_id');
+
+    expect(Player::query()->sole()->name)->toBe('Sara');
+});
+
+it('requires a name', function () {
+    $this->post(route('players.store'), ['name' => ''])->assertSessionHasErrors('name');
+
+    expect(Player::query()->count())->toBe(0);
+});
+
+it('sends visitors without a player back to the name screen', function () {
+    $this->get(route('game.groups'))->assertRedirect(route('game.welcome'));
+});
+
+it('shows the group picker and the group question', function () {
+    playAs($player = Player::factory()->create());
+
+    $this->get(route('game.groups'))
+        ->assertInertia(fn (Assert $page) => $page->component('game/Groups')->where('player.name', $player->name)->where('groups', [1, 2, 3]));
+
+    $this->get(route('answers.create', 2))
+        ->assertInertia(fn (Assert $page) => $page->component('game/Question')
+            ->where('group.number', 2)
+            ->where('group.persona', config('symphony.groups.2.persona')));
+});
+
+it('returns not found for a group that does not exist', function () {
+    playAs(Player::factory()->create());
+
+    $this->get('/groups/4')->assertNotFound();
+});
+
+it('saves the challenge answer and opens the board', function () {
+    playAs($player = Player::factory()->create());
+
+    $response = $this->post(route('answers.store', 1), ['body' => 'Lead with the safety data.']);
+
+    $answer = $player->answers()->sole();
+    $response->assertRedirect(route('board.show', $answer));
+    expect($answer->group)->toBe(1)->and($answer->body)->toBe('Lead with the safety data.');
+
+    $this->get(route('board.show', $answer))
+        ->assertInertia(fn (Assert $page) => $page->component('game/Board')
+            ->has('slotIds', 25)
+            ->has('images', 25)
+            ->where('result', null));
+});
+
+it('requires an answer before the board', function () {
+    playAs(Player::factory()->create());
+
+    $this->post(route('answers.store', 1), ['body' => ''])->assertSessionHasErrors('body');
+});
+
+it('does not show another player’s board', function () {
+    playAs(Player::factory()->create());
+
+    $this->get(route('board.show', Answer::factory()->create()))->assertForbidden();
+});
+
+it('saves the arrangement with the order of images and the server-side score', function () {
+    $answer = Answer::factory()->create(['group' => 3]);
+    playAs($answer->player);
+    $placements = ArrangementFactory::perfectPlacements();
+    [$placements['unmet-0'], $placements['teae-0']] = [$placements['teae-0'], $placements['unmet-0']];
+
+    $response = $this->post(route('arrangements.store', $answer), ['placements' => $placements]);
+
+    $arrangement = Arrangement::query()->sole();
+    $response->assertRedirect(route('arrangements.show', $arrangement));
+    expect($arrangement->placements)->toBe($placements)
+        ->and($arrangement->score)->toBe(23)
+        ->and($arrangement->pattern)->toBe('0'.str_repeat('1', 23).'0')
+        ->and($arrangement->group)->toBe(3)
+        ->and($arrangement->player_id)->toBe($answer->player_id);
+
+    $this->get(route('arrangements.show', $arrangement))
+        ->assertInertia(fn (Assert $page) => $page->component('game/Board')->where('result.score', 23));
+});
+
+it('rejects a board with missing or repeated images', function (array $placements) {
+    $answer = Answer::factory()->create();
+    playAs($answer->player);
+
+    $this->post(route('arrangements.store', $answer), ['placements' => $placements])->assertSessionHasErrors();
+
+    expect(Arrangement::query()->count())->toBe(0);
+})->with([
+    'missing slot' => fn () => array_slice(ArrangementFactory::perfectPlacements(), 0, 24, true),
+    'repeated image' => fn () => array_replace(ArrangementFactory::perfectPlacements(), ['unmet-0' => 2]),
+    'unknown image' => fn () => array_replace(ArrangementFactory::perfectPlacements(), ['unmet-0' => 99]),
+]);
+
+it('does not let a player submit a board for someone else’s answer', function () {
+    playAs(Player::factory()->create());
+
+    $this->post(route('arrangements.store', Answer::factory()->create()), ['placements' => ArrangementFactory::perfectPlacements()])
+        ->assertForbidden();
+});
+
+it('loads the leaderboard best first only when asked for', function () {
+    $answer = Answer::factory()->create();
+    playAs($answer->player);
+    Arrangement::factory()->for($answer)->create(['player_id' => $answer->player_id, 'group' => $answer->group, 'score' => 5, 'pattern' => str_repeat('0', 25)]);
+    Arrangement::factory()->perfect()->create();
+
+    $this->get(route('game.groups'))
+        ->assertInertia(fn (Assert $page) => $page->missing('leaderboard'));
+
+    $this->get(route('game.groups'))
+        ->assertInertia(fn (Assert $page) => $page
+            ->reloadOnly('leaderboard', fn (Assert $reload) => $reload
+                ->has('leaderboard', 2)
+                ->where('leaderboard.0.score', 25)
+                ->where('leaderboard.0.mine', false)
+                ->where('leaderboard.1.mine', true)));
+});

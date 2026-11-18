@@ -1,0 +1,65 @@
+<?php
+
+namespace Database\Factories;
+
+use App\Models\Answer;
+use App\Models\Arrangement;
+use App\SymphonyBoard;
+use Illuminate\Database\Eloquent\Factories\Factory;
+
+/**
+ * @extends Factory<Arrangement>
+ */
+class ArrangementFactory extends Factory
+{
+    /**
+     * Define the model's default state: a random, fully filled board, scored by the real rules.
+     *
+     * @return array<string, mixed>
+     */
+    public function definition(): array
+    {
+        $board = app(SymphonyBoard::class);
+        $placements = array_combine($board->slotIds(), fake()->shuffleArray($board->imageIds()));
+
+        return [
+            'answer_id' => Answer::factory(),
+            'player_id' => fn (array $attributes): int => Answer::query()->findOrFail($attributes['answer_id'])->player_id,
+            'group' => fn (array $attributes): int => Answer::query()->findOrFail($attributes['answer_id'])->group,
+            'placements' => $placements,
+            ...$board->score($placements),
+        ];
+    }
+
+    /**
+     * Indicate that every image is in a correct slot.
+     */
+    public function perfect(): static
+    {
+        return $this->state(fn (): array => [
+            'placements' => self::perfectPlacements(),
+            'pattern' => str_repeat('1', 25),
+            'score' => 25,
+        ]);
+    }
+
+    /**
+     * A placement map where every slot holds a correct image.
+     *
+     * @return array<string, int>
+     */
+    public static function perfectPlacements(): array
+    {
+        $usedImages = [];
+        $placements = [];
+
+        foreach (app(SymphonyBoard::class)->slots() as $slotId => $sectionKey) {
+            $imageId = collect(config("symphony.sections.{$sectionKey}.answers"))
+                ->first(fn (int $candidate): bool => ! in_array($candidate, $usedImages, true));
+            $usedImages[] = $imageId;
+            $placements[$slotId] = $imageId;
+        }
+
+        return $placements;
+    }
+}
