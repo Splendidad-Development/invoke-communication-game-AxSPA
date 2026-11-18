@@ -9,15 +9,13 @@ import { useLeaderboard } from '@/composables/useLeaderboard';
 import { useSymphonyPlayer } from '@/composables/useSymphonyPlayer';
 import { RESULT_PLAYER_KEY, verdictFor } from '@/lib/game';
 import { patternToNotes } from '@/lib/symphony';
-import { show as boardShow } from '@/routes/board';
-import { groups } from '@/routes/game';
+import { groups, welcome } from '@/routes/game';
 import type { ArrangementResult } from '@/types';
 
 const props = defineProps<{
     open: boolean;
     result: ArrangementResult;
     playerName: string;
-    answerId: number;
 }>();
 
 const emit = defineEmits<{ close: [] }>();
@@ -88,12 +86,8 @@ function openLeaderboard(): void {
             <button type="button" class="btn-ghost" @click="close">
                 Review board
             </button>
-            <Link
-                :href="boardShow(answerId)"
-                class="btn-ghost"
-                @click="player.stop()"
-            >
-                Try again
+            <Link :href="welcome()" class="btn-ghost" @click="player.stop()">
+                Restart
             </Link>
             <Link :href="groups()" class="btn-ghost" @click="player.stop()">
                 Back to groups

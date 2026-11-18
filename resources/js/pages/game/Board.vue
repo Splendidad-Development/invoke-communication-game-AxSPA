@@ -398,7 +398,6 @@ onBeforeUnmount(() => symphony.stop());
             :open="isResultOpen"
             :result="result"
             :player-name="player.name"
-            :answer-id="answerId"
             @close="isResultOpen = false"
         />
     </GameLayout>
