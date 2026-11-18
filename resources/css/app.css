@@ -8,11 +8,12 @@
         Montserrat, 'Segoe UI', ui-sans-serif, system-ui, sans-serif,
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
-    --font-display:
-        'Permanent Marker', 'Marker Felt', 'Comic Sans MS', cursive;
+    --font-display: 'Permanent Marker', 'Marker Felt', 'Comic Sans MS', cursive;
 }
 
 @theme {
+    --breakpoint-board: 67.5625rem; /* 1081px: the five-column board */
+
     --color-night: #14152b;
     --color-panel: rgb(20 21 43 / 0.78);
     --color-panel-solid: #1b1c38;
@@ -129,11 +130,6 @@
 
     .slot.is-locked {
         @apply cursor-default;
-    }
-
-    /* Tiles inside a slot stack on top of each other, so the drop preview never changes the layout. */
-    .slot > .tile {
-        @apply absolute inset-0 h-full w-full rounded-[5px];
     }
 
     /* SortableJS states */
