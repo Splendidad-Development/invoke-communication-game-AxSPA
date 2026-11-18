@@ -23,9 +23,9 @@ const emit = defineEmits<{
 </script>
 
 <template>
-    <div class="flex w-full flex-col items-center gap-2">
+    <div class="flex w-full flex-col items-center gap-[7px]">
         <div
-            class="max-w-full rounded-xs px-3 py-1 text-center text-[.8rem] leading-[1.25] font-bold text-ink"
+            class="max-w-full rounded-xs px-2.5 py-1 text-center text-[13px] font-bold text-ink"
             :class="sectionToneClasses[section.tone]"
         >
             {{ section.title }}

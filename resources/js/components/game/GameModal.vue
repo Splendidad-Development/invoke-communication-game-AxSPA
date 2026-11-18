@@ -89,7 +89,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown));
                 <button
                     v-if="showClose"
                     type="button"
-                    class="absolute top-3.5 right-3.5 z-10 size-[38px] cursor-pointer rounded-full bg-white/10 text-xl text-white hover:bg-gold hover:text-ink"
+                    class="absolute top-6 right-[26px] z-10 grid size-[38px] cursor-pointer place-items-center rounded-full bg-white/10 text-xl font-semibold text-white hover:bg-gold hover:text-ink"
                     aria-label="Close"
                     @click="emit('close')"
                 >

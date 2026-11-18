@@ -17,7 +17,7 @@ const emit = defineEmits<{ zoom: [image: GameImage] }>();
         :class="
             fill
                 ? 'absolute inset-0 size-full rounded-[5px]'
-                : 'relative aspect-[4/3] w-32 rounded-lg shadow-[0_4px_14px_rgb(0_0_0/.4)]'
+                : 'relative h-24 w-32 rounded-lg shadow-[0_4px_14px_rgb(0_0_0/.4)]'
         "
         :style="{ backgroundImage: `url(${image.url})` }"
         :data-image="image.id"

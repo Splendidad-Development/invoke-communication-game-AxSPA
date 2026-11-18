@@ -173,6 +173,10 @@ function submit(): void {
 }
 
 const submitLabel = computed(() => {
+    if (isLocked.value) {
+        return 'Submitted';
+    }
+
     if (isSubmitting.value) {
         return 'Submitting…';
     }
@@ -190,30 +194,29 @@ onBeforeUnmount(() => symphony.stop());
 <template>
     <Head :title="`Group ${group.number} board`" />
     <GameLayout focused>
-        <section class="flex min-h-screen flex-col pb-12">
+        <section class="flex min-h-screen flex-col pb-8">
             <!-- Sticky top bar with the tray of images still to place -->
             <div
                 ref="topBar"
                 class="sticky top-0 z-30 bg-night/94 pt-[env(safe-area-inset-top,0px)] shadow-[0_6px_24px_rgb(0_0_0/.35)] backdrop-blur-xl"
             >
                 <div
-                    class="flex flex-wrap items-center gap-4 px-[clamp(.8rem,2vw,1.6rem)] py-3"
+                    class="flex flex-wrap items-center gap-4 px-[clamp(.8rem,2vw,24px)] py-3"
                 >
-                    <div class="flex min-w-0 flex-col">
+                    <div class="flex min-w-0 flex-1 flex-col gap-0.5">
                         <b
-                            class="font-display text-[1.35rem] leading-[1.1] font-normal text-gold"
+                            class="font-display text-[22px] leading-normal font-normal text-gold"
                         >
                             {{ player.name }}
                         </b>
                         <small
-                            class="max-w-[60vw] truncate text-[.82rem] text-muted sm:max-w-[42vw]"
+                            class="truncate text-[13px] font-medium text-muted"
                         >
                             Group {{ group.number }} · {{ group.persona }}
                         </small>
                     </div>
-                    <div class="flex-1" />
                     <LeaderboardButton />
-                    <div class="text-[.95rem] font-bold whitespace-nowrap">
+                    <div class="text-[15px] font-bold whitespace-nowrap">
                         <span class="text-gold">{{
                             board.placedCount.value
                         }}</span>
@@ -223,20 +226,19 @@ onBeforeUnmount(() => symphony.stop());
 
                 <div
                     v-if="!isLocked"
-                    class="border-t border-white/8 pt-2.5 pb-3"
+                    class="flex flex-col gap-2 border-t border-white/8 pt-2.5 pb-3.5"
                 >
                     <p
-                        class="px-[clamp(.8rem,2vw,1.6rem)] pb-2 text-[.82rem] text-muted"
+                        class="m-0 px-[clamp(.8rem,2vw,24px)] text-[13px] font-medium text-muted"
                     >
-                        Drag an image down into the box where it belongs, or
-                        click any box to pick its image from a list. Use the
-                        magnifier to see an image large.
+                        Hover or tap an image to see it large, then drag it down
+                        into the box where it belongs.
                     </p>
                     <VueDraggable
                         v-model="board.lists[TRAY]"
                         v-bind="dragOptions"
                         :data-list="TRAY"
-                        class="flex min-h-[104px] [scrollbar-color:var(--color-gold)_transparent] gap-3 overflow-x-auto px-[clamp(.8rem,2vw,1.6rem)] pt-1 pb-1.5"
+                        class="flex min-h-[110px] [scrollbar-color:var(--color-gold)_transparent] gap-3 overflow-x-auto px-[clamp(.8rem,2vw,24px)] pt-1 pb-2.5"
                         aria-label="Images to place"
                         @start="edgeScroll.start"
                         @end="onDragEnd"
@@ -261,23 +263,21 @@ onBeforeUnmount(() => symphony.stop());
 
             <!-- Brief -->
             <div
-                class="mx-auto w-full max-w-[1680px] px-[clamp(.8rem,2vw,1.6rem)] pt-6 pb-2.5"
+                class="mx-auto flex w-full max-w-[1680px] flex-col items-start gap-3.5 px-[clamp(.8rem,2vw,24px)] pt-[26px] pb-1.5"
             >
-                <div class="flex flex-wrap items-stretch">
+                <div class="flex max-w-full flex-wrap items-center">
                     <div
-                        class="skewed z-10 bg-gold px-[1.1rem] py-1.5 font-display text-2xl text-ink shadow-[0_0_0_3px_#fff]"
+                        class="shrink-0 border-3 border-white bg-gold px-5 py-1.5 font-display text-2xl leading-normal text-ink"
                     >
-                        <span>Group {{ group.number }}</span>
+                        Group {{ group.number }}
                     </div>
                     <div
-                        class="skewed -ml-2 min-w-[260px] flex-1 bg-linear-to-r from-gold-deep from-0% via-[#d8b54a] via-80% to-transparent py-2 pr-10 pl-6 text-ink"
+                        class="min-w-[260px] flex-1 bg-linear-to-r from-gold-deep via-[#d8b54a] via-80% to-[#d8b54a]/0 py-3 pr-[60px] pl-6 text-base font-medium text-ink"
                     >
-                        <span>{{ group.persona }}</span>
+                        {{ group.persona }}
                     </div>
                 </div>
-                <p
-                    class="mt-4 mb-3 text-[clamp(1rem,1.6vw,1.25rem)] font-semibold"
-                >
+                <p class="m-0 text-[clamp(1rem,1.4vw,19px)] font-semibold">
                     Select and order the most relevant brand story elements and
                     CLM tiles to address the assigned challenge.
                 </p>
@@ -286,7 +286,7 @@ onBeforeUnmount(() => symphony.stop());
 
             <!-- Board -->
             <div
-                class="mx-auto grid w-full max-w-[1680px] grid-cols-1 items-start gap-[clamp(.8rem,1.4vw,1.4rem)] px-[clamp(.8rem,2vw,1.6rem)] py-4 sm:grid-cols-2 board:grid-cols-[1.05fr_.8fr_2.3fr_2.3fr_1.1fr]"
+                class="mx-auto grid w-full max-w-[1680px] grid-cols-1 items-start gap-3.5 px-[clamp(.8rem,2vw,24px)] pt-[18px] pb-2.5 sm:grid-cols-2 board:grid-cols-[190fr_150fr_400fr_400fr_190fr]"
             >
                 <div
                     v-for="column in layout"
@@ -301,7 +301,7 @@ onBeforeUnmount(() => symphony.stop());
                     <div
                         :class="
                             column.rows.some((row) => row.length > 1)
-                                ? 'grid w-full grid-cols-2 items-start gap-x-3 gap-y-3.5'
+                                ? 'grid w-full grid-cols-2 items-start gap-3.5'
                                 : 'flex w-full flex-col gap-3.5'
                         "
                     >
@@ -334,13 +334,12 @@ onBeforeUnmount(() => symphony.stop());
                 </div>
             </div>
 
-            <div
-                class="flex flex-wrap items-center justify-center gap-4 px-4 pt-5"
-            >
-                <template v-if="!isLocked">
+            <div class="flex flex-col items-center gap-[22px] px-4 pt-[22px]">
+                <div class="flex flex-wrap items-center justify-center gap-3.5">
                     <button
                         type="button"
                         class="btn-ghost"
+                        :disabled="isLocked"
                         @click="board.reset()"
                     >
                         Clear board
@@ -348,31 +347,25 @@ onBeforeUnmount(() => symphony.stop());
                     <button
                         type="button"
                         class="btn"
-                        :disabled="!board.isComplete.value || isSubmitting"
+                        :disabled="
+                            isLocked || !board.isComplete.value || isSubmitting
+                        "
                         @click="submit"
                     >
                         {{ submitLabel }}
                     </button>
-                </template>
-                <button
-                    v-else
-                    type="button"
-                    class="btn"
-                    @click="isResultOpen = true"
+                </div>
+                <p
+                    v-if="submitError"
+                    class="m-0 text-center font-semibold text-bad"
+                    role="alert"
                 >
-                    See your score
-                </button>
+                    {{ submitError }}
+                </p>
+                <p class="m-0 text-center text-xs font-semibold text-muted">
+                    INTERNAL USE ONLY – Not for promotional use
+                </p>
             </div>
-            <p
-                v-if="submitError"
-                class="mt-3 text-center font-semibold text-bad"
-                role="alert"
-            >
-                {{ submitError }}
-            </p>
-            <p class="mt-6 text-center text-xs font-semibold text-muted">
-                INTERNAL USE ONLY – Not for promotional use
-            </p>
         </section>
 
         <ImagePickerModal

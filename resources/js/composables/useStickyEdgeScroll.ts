@@ -38,14 +38,15 @@ export function useStickyEdgeScroll(header: Ref<HTMLElement | null>) {
     }
 
     function tick(): void {
-        if (pointerY !== null) {
-            const headerBottom =
-                header.value?.getBoundingClientRect().bottom ?? 0;
+        const direction = scrollDirection();
 
-            if (pointerY > headerBottom && pointerY < headerBottom + EDGE) {
-                window.scrollBy(0, -SPEED);
-            } else if (pointerY > window.innerHeight - EDGE) {
-                window.scrollBy(0, SPEED);
+        if (direction === 0) {
+            bandEnteredAt = null;
+        } else {
+            bandEnteredAt ??= performance.now();
+
+            if (performance.now() - bandEnteredAt >= DWELL_MS) {
+                window.scrollBy(0, direction * SPEED);
             }
         }
 

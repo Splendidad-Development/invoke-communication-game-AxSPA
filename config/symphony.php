@@ -22,17 +22,38 @@ return [
 
     'images_path' => '/images/game',
 
+    /*
+    | persona: shown on the question card and the board.
+    | caption: shown under the group's card on the group picker; bold parts are highlighted.
+    */
     'groups' => [
         1 => [
             'persona' => 'Traditionalist: cycles TNFis, hesitant to use JAKis due to safety concerns (1st call)',
+            'caption' => [
+                ['text' => 'Traditionalist: '],
+                ['text' => 'Cycles TNFis', 'bold' => true],
+                ['text' => ', hesitant to use JAKis due to '],
+                ['text' => 'safety concerns', 'bold' => true],
+                ['text' => ' (1st call)'],
+            ],
             'question' => 'How would you address this HCP’s challenge in your call? Describe your approach.',
         ],
         2 => [
-            'persona' => 'Data seeker: wants long-term efficacy evidence before switching patients (2nd call)',
+            'persona' => 'Customizer: switch from 1L TNFis to IL-17is in 2L, reserves JAKis for 3L+ (2nd+ call)',
+            'caption' => [
+                ['text' => 'Customizer: '],
+                ['text' => 'Switch from 1L TNFis to IL-17is in 2L', 'bold' => true],
+                ['text' => ', reserves JAKis for 3L+ (2nd+ call)'],
+            ],
             'question' => 'Which evidence would you lead with for this HCP, and why?',
         ],
         3 => [
-            'persona' => 'Busy prescriber: limited time, focused on fast symptom relief for patients (1st call)',
+            'persona' => 'Pioneer: prefers IL-17i over JAKis as 1L due to long-term safety (1st call)',
+            'caption' => [
+                ['text' => 'Pioneer: '],
+                ['text' => 'Prefers IL-17i over JAKis', 'bold' => true],
+                ['text' => ' as 1L due to long-term safety (1st call)'],
+            ],
             'question' => 'How would you open a short call with this HCP? Write your key message.',
         ],
     ],

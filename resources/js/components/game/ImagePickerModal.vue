@@ -69,21 +69,27 @@ function onKeydown(event: KeyboardEvent): void {
     <GameModal
         :open="slotId !== null"
         labelledby="picker-title"
+        panel-class="border border-white p-[clamp(1rem,2.5vw,26px)]"
         @close="emit('close')"
     >
-        <div @keydown="onKeydown">
-            <h2 id="picker-title" class="m-0 mr-10 mb-1 text-xl font-bold">
-                Choose an image for “{{ slotTitle }}”
-            </h2>
-            <p class="mb-4 text-[.9rem] text-muted">
-                Scroll left or right, pick the image that fits this box, then
-                place it.
-            </p>
+        <div class="flex flex-col gap-3.5" @keydown="onKeydown">
+            <div class="mr-12 flex flex-col gap-1">
+                <h2
+                    id="picker-title"
+                    class="m-0 text-[clamp(1.15rem,2vw,22px)] font-bold text-cream"
+                >
+                    Choose an image for “{{ slotTitle }}”
+                </h2>
+                <p class="m-0 text-[15px] font-medium text-muted">
+                    Scroll left or right, pick the image that fits this box,
+                    then place it.
+                </p>
+            </div>
 
             <div class="relative">
                 <button
                     type="button"
-                    class="absolute top-[calc(50%-30px)] -left-1.5 z-10 size-[46px] cursor-pointer rounded-full bg-gold text-2xl font-extrabold text-ink shadow-[0_6px_20px_rgb(0_0_0/.5)]"
+                    class="absolute top-[150px] left-1 z-10 grid size-[46px] cursor-pointer place-items-center rounded-full bg-gold text-2xl font-extrabold text-ink shadow-[0_6px_20px_rgb(0_0_0/.5)] max-sm:top-[calc(50%-35px)]"
                     aria-label="Previous images"
                     @click="step(-1)"
                 >
@@ -91,13 +97,13 @@ function onKeydown(event: KeyboardEvent): void {
                 </button>
                 <div
                     ref="track"
-                    class="flex snap-x snap-mandatory gap-4 overflow-x-auto px-0.5 pt-1.5 pb-4"
+                    class="flex snap-x snap-mandatory gap-6 overflow-x-auto pt-1.5 pb-4"
                 >
                     <button
                         v-for="(imageId, index) in order"
                         :key="imageId"
                         type="button"
-                        class="group w-[min(440px,78vw)] shrink-0 cursor-pointer snap-center text-left text-cream"
+                        class="flex w-[min(440px,78vw)] shrink-0 cursor-pointer snap-center flex-col gap-2 text-left text-cream"
                         :aria-pressed="selected === imageId"
                         @click="selected = imageId"
                         @dblclick="
@@ -106,55 +112,29 @@ function onKeydown(event: KeyboardEvent): void {
                         "
                     >
                         <div
-                            class="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-white bg-contain bg-center bg-no-repeat transition"
+                            class="aspect-[4/3] w-full rounded-lg bg-white bg-contain bg-center bg-no-repeat transition"
                             :class="
                                 selected === imageId
-                                    ? 'shadow-[0_0_0_5px_var(--color-gold)]'
-                                    : 'group-hover:shadow-[0_0_0_3px_rgb(255_210_31/.6)]'
+                                    ? 'border-5 border-gold'
+                                    : 'hover:shadow-[0_0_0_3px_rgb(255_210_31/.6)]'
                             "
                             :style="{
                                 backgroundImage: `url(${images.get(imageId)?.url})`,
                             }"
-                        >
-                            <div
-                                v-if="placedIn(imageId)"
-                                class="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-night/78 p-4 text-center"
-                            >
-                                <b
-                                    class="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[.95rem] font-extrabold text-ink"
-                                    :class="
-                                        placedIn(imageId)?.slotId === slotId
-                                            ? 'bg-ok'
-                                            : 'bg-gold'
-                                    "
-                                >
-                                    {{
-                                        placedIn(imageId)?.slotId === slotId
-                                            ? '✓ In this box'
-                                            : '✓ Placed'
-                                    }}
-                                </b>
-                                <span
-                                    v-if="placedIn(imageId)?.slotId !== slotId"
-                                    class="text-sm leading-[1.3] font-semibold text-white [text-shadow:0_1px_6px_rgb(0_0_0/.6)]"
-                                >
-                                    {{ placedIn(imageId)?.title }}
-                                </span>
-                            </div>
-                        </div>
+                        />
                         <div
-                            class="mt-2 flex justify-between gap-2 text-[.85rem] font-semibold"
+                            class="flex w-full justify-between gap-2 text-[13px] font-semibold"
                             :class="
                                 selected === imageId
                                     ? 'text-gold'
                                     : 'text-muted'
                             "
                         >
-                            <span
+                            <span class="whitespace-nowrap"
                                 >Image {{ index + 1 }} of
                                 {{ order.length }}</span
                             >
-                            <span>
+                            <span class="truncate">
                                 {{
                                     !placedIn(imageId)
                                         ? 'Not placed yet'
@@ -168,7 +148,7 @@ function onKeydown(event: KeyboardEvent): void {
                 </div>
                 <button
                     type="button"
-                    class="absolute top-[calc(50%-30px)] -right-1.5 z-10 size-[46px] cursor-pointer rounded-full bg-gold text-2xl font-extrabold text-ink shadow-[0_6px_20px_rgb(0_0_0/.5)]"
+                    class="absolute top-[150px] right-1 z-10 grid size-[46px] cursor-pointer place-items-center rounded-full bg-gold text-2xl font-extrabold text-ink shadow-[0_6px_20px_rgb(0_0_0/.5)] max-sm:top-[calc(50%-35px)]"
                     aria-label="Next images"
                     @click="step(1)"
                 >
@@ -176,7 +156,7 @@ function onKeydown(event: KeyboardEvent): void {
                 </button>
             </div>
 
-            <div class="mt-1.5 flex flex-wrap justify-end gap-3">
+            <div class="flex flex-wrap justify-end gap-3">
                 <button
                     v-if="currentImageId"
                     type="button"

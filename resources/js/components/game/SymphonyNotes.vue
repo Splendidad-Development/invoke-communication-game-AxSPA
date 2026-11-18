@@ -22,17 +22,20 @@ function barClass(index: number, isGood: boolean): string {
 
     if (props.size === 'large') {
         return cn(
-            'origin-bottom rounded-[3px] bg-white/14 transition',
+            'rounded-[3px] bg-white/14 transition-colors',
             isRevealed &&
                 props.activeIndex >= 0 &&
-                (isGood ? 'scale-y-108 bg-gold' : 'bg-bad'),
+                (isGood ? 'bg-gold' : 'bg-bad'),
         );
     }
 
+    // While a row plays, the current note is outlined and the notes still to come are dimmed.
     return cn(
         'rounded-[1px]',
         isGood ? 'bg-gold' : 'bg-bad',
-        index === props.activeIndex && 'outline-2 outline-white',
+        index === props.activeIndex &&
+            'outline-2 -outline-offset-2 outline-white',
+        props.activeIndex >= 0 && index > props.activeIndex && 'opacity-45',
     );
 }
 </script>
@@ -42,8 +45,8 @@ function barClass(index: number, isGood: boolean): string {
         aria-hidden="true"
         :class="
             size === 'large'
-                ? 'mx-auto mb-6 grid h-[86px] max-w-[480px] grid-cols-[repeat(25,1fr)] items-end gap-1'
-                : 'grid h-[22px] grid-cols-[repeat(25,3px)] items-end gap-px sm:grid-cols-[repeat(25,4px)] sm:gap-0.5'
+                ? 'grid h-[86px] w-full max-w-[480px] grid-cols-[repeat(25,1fr)] items-end gap-1'
+                : 'grid h-6 grid-cols-[repeat(25,3px)] items-end gap-px sm:grid-cols-[repeat(25,4px)] sm:gap-0.5'
         "
     >
         <i

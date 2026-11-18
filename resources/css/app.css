@@ -40,7 +40,7 @@
 @layer base {
     :root {
         color-scheme: dark;
-        --slot: clamp(84px, 6.6vw, 124px);
+        --slot: clamp(84px, 6.4vw, 124px);
     }
 
     @media (max-width: 1080px) {
@@ -70,32 +70,16 @@
 
 @layer components {
     .btn {
-        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-gold px-6 py-3.5 text-base font-bold text-ink transition hover:bg-gold-light active:scale-[.97] disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:bg-gold;
+        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-base font-bold text-ink transition hover:bg-gold-light active:scale-[.97] disabled:cursor-not-allowed disabled:bg-gold/45 disabled:text-ink/70 disabled:hover:bg-gold/45;
     }
 
     .btn-ghost {
-        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-6 py-3.5 text-base font-bold text-cream shadow-[inset_0_0_0_2px_rgb(255_255_255/.35)] transition hover:text-gold hover:shadow-[inset_0_0_0_2px_var(--color-gold)] active:scale-[.97];
+        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-7 py-3.5 text-base font-bold text-cream shadow-[inset_0_0_0_2px_rgb(255_255_255/.35)] transition hover:text-gold hover:shadow-[inset_0_0_0_2px_var(--color-gold)] active:scale-[.97] disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:text-cream disabled:hover:shadow-[inset_0_0_0_2px_rgb(255_255_255/.35)];
     }
 
-    /* Gold brush-stroke behind display headings. */
+    /* Gold brush block behind display headings. */
     .brush {
-        @apply relative isolate inline-block px-[.35em] pt-[.15em] pb-[.05em] font-display leading-[.95] text-ink;
-    }
-
-    .brush::before {
-        content: '';
-        @apply absolute inset-x-0 top-[42%] bottom-[2%] -z-10 rounded-[6px_30px_8px_24px] bg-gold;
-        transform: skew(-8deg) rotate(-1.5deg);
-    }
-
-    /* Slanted banner pieces. Children counter-skew to keep text upright. */
-    .skewed {
-        transform: skew(-12deg);
-    }
-
-    .skewed > * {
-        display: inline-block;
-        transform: skew(12deg);
+        @apply inline-block -rotate-[1.5deg] rounded-[6px_30px_8px_24px] bg-gold px-[.39em] pt-[.2em] pb-[.065em] font-display leading-[normal] font-normal text-ink;
     }
 
     /* Board slot: the container SortableJS drops into. */
@@ -108,20 +92,26 @@
         @apply pointer-events-none text-2xl leading-none font-medium;
     }
 
-    .slot:hover {
-        @apply border-gold text-gold;
+    /* Hover state, also shown on the box an image is being dragged over. */
+    .slot:hover,
+    .slot:has(> .tile-ghost) {
+        @apply border-gold bg-gold/20 text-gold;
     }
 
     .slot.is-filled {
         @apply border-solid border-white bg-white;
     }
 
+    .slot.is-filled:has(> .tile-ghost) {
+        @apply border-solid border-gold;
+    }
+
     .slot.is-ok {
-        @apply border-ok shadow-[0_0_0_3px_var(--color-ok)];
+        @apply border-4 border-ok;
     }
 
     .slot.is-bad {
-        @apply border-bad shadow-[0_0_0_3px_var(--color-bad)];
+        @apply border-4 border-bad;
     }
 
     .slot.is-playing {
@@ -137,12 +127,17 @@
         @apply opacity-60 outline-3 outline-gold;
     }
 
+    /* The drop placeholder is a copy of the dragged tile; keep it inside the box so the box keeps its size. */
+    .slot > .tile-ghost {
+        @apply absolute! inset-0 size-full! opacity-0;
+    }
+
     .tile-chosen {
         @apply cursor-grabbing;
     }
 
     .tile-drag {
-        @apply rotate-[-3deg] opacity-100! shadow-[0_18px_40px_rgb(0_0_0/.6)] outline-3 outline-gold;
+        @apply rotate-[-3deg] opacity-100! shadow-[0_4px_14px_rgb(0_0_0/.4)] outline-3 -outline-offset-3 outline-gold;
     }
 
     .zoom-button {

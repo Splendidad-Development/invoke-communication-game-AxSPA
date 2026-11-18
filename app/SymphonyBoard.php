@@ -15,7 +15,7 @@ class SymphonyBoard
     /**
      * @param  array<string, Section>  $sections
      * @param  list<Column>  $columns
-     * @param  array<int, array{persona: string, question: string}>  $groups
+     * @param  array<int, array{persona: string, caption: list<array{text: string, bold?: bool}>, question: string}>  $groups
      */
     public function __construct(
         private array $sections,
@@ -87,7 +87,26 @@ class SymphonyBoard
      */
     public function group(int $group): array
     {
-        return $this->groups[$group];
+        return [
+            'persona' => $this->groups[$group]['persona'],
+            'question' => $this->groups[$group]['question'],
+        ];
+    }
+
+    /**
+     * Every group with the caption shown under its card on the group picker.
+     *
+     * @return list<array{number: int, caption: list<array{text: string, bold: bool}>}>
+     */
+    public function groupCards(): array
+    {
+        return array_map(fn (int $group): array => [
+            'number' => $group,
+            'caption' => array_map(fn (array $part): array => [
+                'text' => $part['text'],
+                'bold' => $part['bold'] ?? false,
+            ], $this->groups[$group]['caption']),
+        ], $this->groupNumbers());
     }
 
     public function isCorrect(string $slotId, ?int $imageId): bool

@@ -39,7 +39,11 @@ it('shows the group picker and the group question', function () {
     playAs($player = Player::factory()->create());
 
     $this->get(route('game.groups'))
-        ->assertInertia(fn (Assert $page) => $page->component('game/Groups')->where('player.name', $player->name)->where('groups', [1, 2, 3]));
+        ->assertInertia(fn (Assert $page) => $page->component('game/Groups')
+            ->where('player.name', $player->name)
+            ->has('groups', 3)
+            ->where('groups.1.number', 2)
+            ->where('groups.1.caption.1', ['text' => 'Switch from 1L TNFis to IL-17is in 2L', 'bold' => true]));
 
     $this->get(route('answers.create', 2))
         ->assertInertia(fn (Assert $page) => $page->component('game/Question')

@@ -27,14 +27,9 @@ const rows = computed(() =>
 );
 
 const summary = computed(() => {
-    if (!rows.value.length) {
-        return '';
-    }
-
-    const players = new Set(rows.value.map((entry) => entry.playerId)).size;
     const plays = rows.value.length;
 
-    return `${players} ${players === 1 ? 'player' : 'players'} · ${plays} ${plays === 1 ? 'play' : 'plays'}`;
+    return plays ? `${plays} ${plays === 1 ? 'play' : 'plays'}` : '';
 });
 
 const playKey = (id: number): string => `leaderboard-${id}`;
@@ -57,27 +52,30 @@ watch(leaderboard.isOpen, (isOpen) => {
 
 const rankColour = (index: number): string =>
     ['text-gold', 'text-[#d9d9e3]', 'text-sunset'][index] ?? 'text-muted';
+
+const isPlaying = (id: number): boolean =>
+    player.playingKey.value === playKey(id);
 </script>
 
 <template>
     <GameModal
         :open="leaderboard.isOpen.value"
         labelledby="leaderboard-title"
-        panel-class="max-w-[720px] px-6 pt-6 pb-5"
+        panel-class="flex max-w-[780px] flex-col gap-3.5 px-[26px] pt-6 pb-[22px]"
         @close="close"
     >
-        <div class="mr-10 mb-1 flex flex-wrap items-baseline gap-3">
+        <div class="mr-12 flex items-center gap-3">
             <h2
                 id="leaderboard-title"
-                class="m-0 font-display text-[2rem] font-normal text-gold"
+                class="m-0 font-display text-[34px] leading-normal font-normal text-gold"
             >
                 Leaderboard
             </h2>
-            <span class="text-sm text-muted">{{ summary }}</span>
+            <span class="text-sm font-medium text-muted">{{ summary }}</span>
         </div>
 
         <div
-            class="mt-2.5 mb-4 inline-flex flex-wrap gap-1 rounded-full bg-white/7 p-1"
+            class="inline-flex w-fit flex-wrap gap-1 rounded-full bg-white/7 p-1"
             role="group"
             aria-label="Filter by group"
         >
@@ -85,7 +83,7 @@ const rankColour = (index: number): string =>
                 v-for="option in filters"
                 :key="option.value"
                 type="button"
-                class="cursor-pointer rounded-full px-3.5 py-1.5 text-[.82rem] font-bold"
+                class="cursor-pointer rounded-full px-3.5 py-[7px] text-[13px] font-bold"
                 :class="
                     filter === option.value ? 'bg-gold text-ink' : 'text-cream'
                 "
@@ -100,31 +98,28 @@ const rankColour = (index: number): string =>
             <table v-if="rows.length" class="w-full border-collapse">
                 <thead>
                     <tr
-                        class="text-left text-xs tracking-[.06em] text-muted uppercase"
+                        class="text-left text-[11px] font-bold tracking-[.06em] text-muted uppercase"
                     >
-                        <th
-                            class="border-b border-white/12 px-1.5 py-1.5 sm:px-2"
-                        >
+                        <th class="w-11 border-b border-white/12 px-2 py-1">
                             #
                         </th>
+                        <th class="border-b border-white/12 px-2 py-1">Name</th>
                         <th
-                            class="border-b border-white/12 px-1.5 py-1.5 sm:px-2"
+                            class="hidden w-[100px] border-b border-white/12 px-2 py-1 sm:table-cell"
                         >
-                            Name
+                            Group
                         </th>
                         <th
-                            class="border-b border-white/12 px-1.5 py-1.5 sm:px-2"
+                            class="w-[110px] border-b border-white/12 px-2 py-1"
                         >
                             Score
                         </th>
                         <th
-                            class="border-b border-white/12 px-1.5 py-1.5 sm:px-2"
+                            class="w-[170px] border-b border-white/12 px-2 py-1"
                         >
-                            Symphony
+                            Notes
                         </th>
-                        <th
-                            class="border-b border-white/12 px-1.5 py-1.5 sm:px-2"
-                        >
+                        <th class="w-[60px] border-b border-white/12 px-2 py-1">
                             <span class="sr-only">Play</span>
                         </th>
                     </tr>
@@ -136,57 +131,55 @@ const rankColour = (index: number): string =>
                         :class="entry.mine && 'bg-gold/8'"
                     >
                         <td
-                            class="w-10 border-b border-white/6 px-1.5 py-2.5 font-display text-xl sm:px-2"
+                            class="border-b border-white/6 px-2 py-2.5 font-display text-[22px] leading-normal"
                             :class="rankColour(index)"
                         >
                             {{ index + 1 }}
                         </td>
                         <td
-                            class="border-b border-white/6 px-1.5 py-2.5 font-bold sm:px-2"
+                            class="border-b border-white/6 px-2 py-2.5 text-base font-bold text-cream"
                         >
                             {{ entry.name }}
                             <small
-                                class="block text-[.78rem] font-medium text-muted"
+                                v-if="entry.mine"
+                                class="block text-xs font-medium text-muted"
                             >
-                                Group {{ entry.group
-                                }}<template v-if="entry.mine"> · you</template>
+                                you
                             </small>
                         </td>
                         <td
-                            class="border-b border-white/6 px-1.5 py-2.5 font-display text-[1.35rem] whitespace-nowrap text-gold sm:px-2"
+                            class="hidden border-b border-white/6 px-2 py-2.5 sm:table-cell"
                         >
-                            {{ entry.score
-                            }}<small class="text-[.7em] text-cream">/25</small>
+                            <span
+                                class="rounded-full bg-white/10 px-2.5 py-1 text-xs font-bold whitespace-nowrap text-cream"
+                            >
+                                Group {{ entry.group }}
+                            </span>
                         </td>
                         <td
-                            class="border-b border-white/6 px-1.5 py-2.5 sm:px-2"
+                            class="border-b border-white/6 px-2 py-2.5 font-display text-2xl leading-normal whitespace-nowrap text-gold"
                         >
+                            {{ entry.score
+                            }}<small class="text-sm text-cream">/25</small>
+                        </td>
+                        <td class="border-b border-white/6 px-2 py-2.5">
                             <SymphonyNotes
                                 :notes="patternToNotes(entry.pattern)"
                                 :active-index="
-                                    player.playingKey.value ===
-                                    playKey(entry.id)
+                                    isPlaying(entry.id)
                                         ? player.currentStep.value
                                         : -1
                                 "
                             />
                         </td>
-                        <td
-                            class="border-b border-white/6 px-1.5 py-2.5 sm:px-2"
-                        >
+                        <td class="border-b border-white/6 px-2 py-2.5">
                             <button
                                 type="button"
-                                class="grid size-[38px] cursor-pointer place-items-center rounded-full text-ink"
+                                class="mx-auto grid size-[38px] cursor-pointer place-items-center rounded-full text-ink"
                                 :class="
-                                    player.playingKey.value ===
-                                    playKey(entry.id)
-                                        ? 'bg-white'
-                                        : 'bg-gold'
+                                    isPlaying(entry.id) ? 'bg-white' : 'bg-gold'
                                 "
-                                :aria-pressed="
-                                    player.playingKey.value ===
-                                    playKey(entry.id)
-                                "
+                                :aria-pressed="isPlaying(entry.id)"
                                 :aria-label="`Play ${entry.name}’s arrangement`"
                                 @click="
                                     player.toggle(
@@ -197,10 +190,7 @@ const rankColour = (index: number): string =>
                             >
                                 <PlayIcon
                                     class="size-[15px]"
-                                    :playing="
-                                        player.playingKey.value ===
-                                        playKey(entry.id)
-                                    "
+                                    :playing="isPlaying(entry.id)"
                                 />
                             </button>
                         </td>
@@ -218,8 +208,10 @@ const rankColour = (index: number): string =>
             </p>
         </div>
 
-        <p class="mt-3 text-[.8rem] text-muted">
-            Scores are shared with everyone playing the game.
+        <p class="m-0 text-[13px] font-medium text-muted">
+            Scores are shared with everyone who opens this game. Press play to
+            hear a player’s arrangement: gold bars are correct notes, pink bars
+            are sour ones.
         </p>
     </GameModal>
 </template>

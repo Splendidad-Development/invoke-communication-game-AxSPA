@@ -8,17 +8,17 @@ import { store } from '@/routes/players';
     <Head title="Communication game" />
     <GameLayout>
         <section
-            class="flex min-h-screen flex-col items-center justify-end px-5 pt-8 pb-[12vh] text-center"
+            class="flex min-h-screen flex-col items-center justify-end gap-5 px-4 pt-8 pb-[12vh] text-center"
             aria-labelledby="welcome-title"
         >
             <h1
                 id="welcome-title"
-                class="brush m-0 text-[clamp(2.6rem,8vw,6rem)]"
+                class="brush m-0 text-[clamp(2.6rem,6.4vw,5.75rem)]"
             >
                 Communication game
             </h1>
             <p
-                class="mt-[1.1rem] mb-8 text-[clamp(1rem,2.2vw,1.3rem)] font-semibold [text-shadow:0_2px_12px_rgb(0_0_0/.6)]"
+                class="m-0 text-[clamp(1rem,1.6vw,1.375rem)] font-semibold [text-shadow:0_2px_12px_rgb(0_0_0/.6)]"
             >
                 Build the axSpA brand story, then hear how it sounds.
             </p>
@@ -30,7 +30,7 @@ import { store } from '@/routes/players';
                 #default="{ errors, processing }"
             >
                 <div
-                    class="flex gap-2.5 rounded-full bg-night/70 p-2 shadow-[0_10px_40px_rgb(0_0_0/.4)] backdrop-blur-md focus-within:shadow-[0_0_0_3px_var(--color-gold),0_10px_40px_rgb(0_0_0/.4)]"
+                    class="flex items-center gap-2.5 rounded-full bg-night/75 py-2 pr-2 pl-6 shadow-[0_10px_40px_rgb(0_0_0/.4)] backdrop-blur-md focus-within:shadow-[0_0_0_3px_var(--color-gold),0_10px_40px_rgb(0_0_0/.4)]"
                 >
                     <label for="player-name" class="sr-only">Your name</label>
                     <input
@@ -40,7 +40,7 @@ import { store } from '@/routes/players';
                         maxlength="40"
                         placeholder="Enter your name"
                         required
-                        class="min-w-0 flex-1 bg-transparent px-[1.1rem] py-2.5 text-[1.05rem] font-semibold text-cream placeholder:text-muted focus:outline-none"
+                        class="min-w-0 flex-1 bg-transparent text-[17px] font-semibold text-cream placeholder:text-muted focus:outline-none"
                     />
                     <button class="btn" type="submit" :disabled="processing">
                         Start

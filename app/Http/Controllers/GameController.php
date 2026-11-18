@@ -18,7 +18,7 @@ class GameController extends Controller
     {
         return Inertia::render('game/Groups', [
             'player' => $this->currentPlayer($request)->only('id', 'name'),
-            'groups' => $board->groupNumbers(),
+            'groups' => $board->groupCards(),
         ]);
     }
 }

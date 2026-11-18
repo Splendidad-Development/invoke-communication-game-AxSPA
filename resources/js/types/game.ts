@@ -50,3 +50,9 @@ export type LeaderboardEntry = {
     pattern: string;
     mine: boolean;
 };
+
+export type GroupCard = {
+    number: number;
+    /** Caption under the group's card; bold parts are highlighted. */
+    caption: { text: string; bold: boolean }[];
+};

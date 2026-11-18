@@ -4,8 +4,6 @@ import { computed } from 'vue';
 import GameModal from '@/components/game/GameModal.vue';
 import PlayIcon from '@/components/game/PlayIcon.vue';
 import SymphonyNotes from '@/components/game/SymphonyNotes.vue';
-import TrophyIcon from '@/components/game/TrophyIcon.vue';
-import { useLeaderboard } from '@/composables/useLeaderboard';
 import { useSymphonyPlayer } from '@/composables/useSymphonyPlayer';
 import { RESULT_PLAYER_KEY, verdictFor } from '@/lib/game';
 import { patternToNotes } from '@/lib/symphony';
@@ -21,7 +19,6 @@ const props = defineProps<{
 const emit = defineEmits<{ close: [] }>();
 
 const player = useSymphonyPlayer();
-const leaderboard = useLeaderboard();
 
 const notes = computed(() => patternToNotes(props.result.pattern));
 const isPlaying = computed(() => player.playingKey.value === RESULT_PLAYER_KEY);
@@ -33,11 +30,6 @@ function close(): void {
     player.stop();
     emit('close');
 }
-
-function openLeaderboard(): void {
-    close();
-    leaderboard.open();
-}
 </script>
 
 <template>
@@ -45,17 +37,21 @@ function openLeaderboard(): void {
         :open="open"
         labelledby="result-score"
         :show-close="false"
-        panel-class="max-w-[620px] bg-[radial-gradient(120%_90%_at_50%_0%,#3a2c3f_0%,var(--color-panel-solid)_60%)] px-6 py-8 text-center"
+        panel-class="flex max-w-[620px] flex-col items-center gap-3.5 border border-white bg-[radial-gradient(ellipse_at_center,#3a2c3f_0%,#1b1c38_60%)] px-[clamp(1rem,4vw,32px)] pt-[34px] pb-[30px] text-center"
         @close="close"
     >
         <div
             id="result-score"
-            class="mt-1.5 mb-1 font-display text-[clamp(4rem,14vw,7rem)] leading-none text-gold"
+            class="flex items-baseline gap-1 font-display leading-normal"
         >
-            {{ result.score
-            }}<small class="text-[.45em] text-cream">/{{ notes.length }}</small>
+            <span class="text-[clamp(4rem,14vw,112px)] text-gold">{{
+                result.score
+            }}</span>
+            <span class="text-[clamp(2rem,6vw,50px)] text-cream"
+                >/{{ notes.length }}</span
+            >
         </div>
-        <p class="mb-6 text-lg font-semibold">
+        <p class="m-0 text-lg font-semibold">
             {{ verdictFor(result.score, notes.length, playerName) }}
         </p>
 
@@ -74,7 +70,7 @@ function openLeaderboard(): void {
 
         <button
             type="button"
-            class="btn px-8 py-4 text-lg"
+            class="btn"
             data-autofocus
             @click="player.toggle(RESULT_PLAYER_KEY, notes)"
         >
@@ -82,7 +78,7 @@ function openLeaderboard(): void {
             <span>{{ isPlaying ? 'Stop' : 'Play your arrangement' }}</span>
         </button>
 
-        <div class="mt-5 flex flex-wrap justify-center gap-3">
+        <div class="flex flex-wrap justify-center gap-3">
             <button type="button" class="btn-ghost" @click="close">
                 Review board
             </button>
@@ -92,10 +88,6 @@ function openLeaderboard(): void {
             <Link :href="groups()" class="btn-ghost" @click="player.stop()">
                 Back to groups
             </Link>
-            <button type="button" class="btn-ghost" @click="openLeaderboard">
-                <TrophyIcon class="size-[17px]" />
-                Leaderboard
-            </button>
         </div>
     </GameModal>
 </template>
