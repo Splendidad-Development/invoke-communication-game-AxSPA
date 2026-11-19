@@ -19,7 +19,10 @@ withDefaults(
             <div
                 class="absolute inset-0 bg-cover bg-center"
                 style="background-image: url('/images/game/background.jpg')"
-                :class="focused && 'scale-105 blur-[10px] saturate-110'"
+                :class="focused && 'scale-105 blur-[5px]'"
+            />
+            <div
+                class="absolute inset-0 bg-linear-to-b from-[#f6b35a]/0 to-[#2b2340]"
             />
             <div
                 class="absolute inset-0"

@@ -4,6 +4,8 @@ import { computed } from 'vue';
 import GameModal from '@/components/game/GameModal.vue';
 import PlayIcon from '@/components/game/PlayIcon.vue';
 import SymphonyNotes from '@/components/game/SymphonyNotes.vue';
+import TrophyIcon from '@/components/game/TrophyIcon.vue';
+import { useLeaderboard } from '@/composables/useLeaderboard';
 import { useSymphonyPlayer } from '@/composables/useSymphonyPlayer';
 import { RESULT_PLAYER_KEY, verdictFor } from '@/lib/game';
 import { patternToNotes } from '@/lib/symphony';
@@ -19,6 +21,7 @@ const props = defineProps<{
 const emit = defineEmits<{ close: [] }>();
 
 const player = useSymphonyPlayer();
+const leaderboard = useLeaderboard();
 
 const notes = computed(() => patternToNotes(props.result.pattern));
 const isPlaying = computed(() => player.playingKey.value === RESULT_PLAYER_KEY);
@@ -29,6 +32,11 @@ const hasPlayed = computed(
 function close(): void {
     player.stop();
     emit('close');
+}
+
+function openLeaderboard(): void {
+    close();
+    leaderboard.open();
 }
 </script>
 
@@ -88,6 +96,10 @@ function close(): void {
             <Link :href="groups()" class="btn-ghost" @click="player.stop()">
                 Back to groups
             </Link>
+            <button type="button" class="btn-ghost" @click="openLeaderboard">
+                <TrophyIcon class="size-[18px]" />
+                Leaderboard
+            </button>
         </div>
     </GameModal>
 </template>

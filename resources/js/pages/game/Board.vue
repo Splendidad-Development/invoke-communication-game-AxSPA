@@ -173,10 +173,6 @@ function submit(): void {
 }
 
 const submitLabel = computed(() => {
-    if (isLocked.value) {
-        return 'Submitted';
-    }
-
     if (isSubmitting.value) {
         return 'Submitting…';
     }
@@ -336,23 +332,30 @@ onBeforeUnmount(() => symphony.stop());
 
             <div class="flex flex-col items-center gap-[22px] px-4 pt-[22px]">
                 <div class="flex flex-wrap items-center justify-center gap-3.5">
+                    <template v-if="!isLocked">
+                        <button
+                            type="button"
+                            class="btn-ghost"
+                            @click="board.reset()"
+                        >
+                            Clear board
+                        </button>
+                        <button
+                            type="button"
+                            class="btn"
+                            :disabled="!board.isComplete.value || isSubmitting"
+                            @click="submit"
+                        >
+                            {{ submitLabel }}
+                        </button>
+                    </template>
                     <button
-                        type="button"
-                        class="btn-ghost"
-                        :disabled="isLocked"
-                        @click="board.reset()"
-                    >
-                        Clear board
-                    </button>
-                    <button
+                        v-else
                         type="button"
                         class="btn"
-                        :disabled="
-                            isLocked || !board.isComplete.value || isSubmitting
-                        "
-                        @click="submit"
+                        @click="isResultOpen = true"
                     >
-                        {{ submitLabel }}
+                        See your score
                     </button>
                 </div>
                 <p
