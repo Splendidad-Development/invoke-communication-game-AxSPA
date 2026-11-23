@@ -92,8 +92,9 @@
         @apply pointer-events-none text-2xl leading-none font-medium;
     }
 
-    /* Hover state, also shown on the box an image is being dragged over. */
+    /* Hover state, also shown on the box an image is being dragged over and on the box the picker is open for. */
     .slot:hover,
+    .slot.is-target,
     .slot:has(> .tile-ghost) {
         @apply border-gold bg-gold/20 text-gold;
     }
@@ -102,6 +103,7 @@
         @apply border-solid border-white bg-white;
     }
 
+    .slot.is-filled.is-target,
     .slot.is-filled:has(> .tile-ghost) {
         @apply border-solid border-gold;
     }

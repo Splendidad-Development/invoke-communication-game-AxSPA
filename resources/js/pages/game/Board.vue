@@ -315,6 +315,7 @@ onBeforeUnmount(() => symphony.stop());
                                 :locked="isLocked"
                                 :correctness="correctness"
                                 :playing-slot-id="playingSlotId"
+                                :target-slot-id="pickerSlotId"
                                 @update:list="
                                     (slotId, list) =>
                                         (board.lists[slotId] = list)

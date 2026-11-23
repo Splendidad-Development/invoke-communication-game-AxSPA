@@ -13,6 +13,8 @@ const props = defineProps<{
     /** null while the board is in play; true/false once it has been scored. */
     isCorrect: boolean | null;
     isPlaying: boolean;
+    /** The box the picker is open for (tap to select). */
+    isTarget?: boolean;
 }>();
 
 const list = defineModel<number[]>({ required: true });
@@ -68,6 +70,7 @@ function ariaLabel(): string {
             'is-ok': isCorrect === true,
             'is-bad': isCorrect === false,
             'is-playing': isPlaying,
+            'is-target': isTarget,
             'is-locked': locked,
         }"
         @add="onAdd"

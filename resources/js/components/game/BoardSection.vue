@@ -10,6 +10,7 @@ defineProps<{
     locked: boolean;
     correctness: (slotId: string) => boolean | null;
     playingSlotId: string | null;
+    targetSlotId?: string | null;
 }>();
 
 const emit = defineEmits<{
@@ -41,6 +42,7 @@ const emit = defineEmits<{
                 :locked="locked"
                 :is-correct="correctness(slotId)"
                 :is-playing="playingSlotId === slotId"
+                :is-target="targetSlotId === slotId"
                 @update:model-value="emit('update:list', slotId, $event)"
                 @dropped="(...args) => emit('dropped', ...args)"
                 @drag-start="emit('dragStart')"
