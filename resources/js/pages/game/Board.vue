@@ -9,6 +9,7 @@ import ImageLightbox from '@/components/game/ImageLightbox.vue';
 import ImagePickerModal from '@/components/game/ImagePickerModal.vue';
 import ImageTile from '@/components/game/ImageTile.vue';
 import LeaderboardButton from '@/components/game/LeaderboardButton.vue';
+import MistakesModal from '@/components/game/MistakesModal.vue';
 import ResultModal from '@/components/game/ResultModal.vue';
 import { TRAY, useBoardArrangement } from '@/composables/useBoardArrangement';
 import { useStickyEdgeScroll } from '@/composables/useStickyEdgeScroll';
@@ -52,6 +53,7 @@ const isResultOpen = ref(props.result !== null);
 const isSubmitting = ref(false);
 const lightboxImage = ref<GameImage | null>(null);
 const pickerSlotId = ref<string | null>(null);
+const isMistakesOpen = ref(false);
 
 // Inertia keeps this component mounted when moving between the board and its result,
 // so reset the board whenever a different arrangement (or a fresh board) arrives.
@@ -63,6 +65,7 @@ watch(
         isResultOpen.value = props.result !== null;
         pickerSlotId.value = null;
         lightboxImage.value = null;
+        isMistakesOpen.value = false;
     },
 );
 const submitError = computed(
@@ -211,6 +214,20 @@ onBeforeUnmount(() => symphony.stop());
                             Group {{ group.number }} · {{ group.persona }}
                         </small>
                     </div>
+                    <button
+                        v-if="result?.mistakes.length"
+                        type="button"
+                        class="inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-full bg-white/8 px-[17.5px] py-[10.5px] text-sm font-bold text-cream shadow-[inset_0_0_0_1.5px_rgb(255_210_31/.55)] hover:bg-gold hover:text-ink"
+                        :class="isMistakesOpen && 'bg-gold text-ink'"
+                        :aria-expanded="isMistakesOpen"
+                        @click="isMistakesOpen = true"
+                    >
+                        Wrong answers
+                        <span
+                            class="grid min-w-5 place-items-center rounded-full bg-bad px-1.5 text-xs text-white"
+                            >{{ result.mistakes.length }}</span
+                        >
+                    </button>
                     <LeaderboardButton />
                     <div class="text-[15px] font-bold whitespace-nowrap">
                         <span class="text-gold">{{
@@ -277,7 +294,7 @@ onBeforeUnmount(() => symphony.stop());
                     Select and order the most relevant brand story elements and
                     CLM tiles to address the assigned challenge.
                 </p>
-                <ColourKey />
+                <ColourKey v-if="isLocked" />
             </div>
 
             <!-- Board -->
@@ -293,7 +310,7 @@ onBeforeUnmount(() => symphony.stop());
                         'sm:col-span-2 board:col-span-1'
                     "
                 >
-                    <BoardColumnHeading :column="column" />
+                    <BoardColumnHeading v-if="isLocked" :column="column" />
                     <div
                         :class="
                             column.rows.some((row) => row.length > 1)
@@ -310,6 +327,7 @@ onBeforeUnmount(() => symphony.stop());
                                 :key="section.key"
                                 :class="row.length === 1 && 'col-span-2'"
                                 :section="section"
+                                :show-label="isLocked"
                                 :lists="board.lists"
                                 :images="imagesById"
                                 :locked="isLocked"
@@ -386,6 +404,15 @@ onBeforeUnmount(() => symphony.stop());
             @close="pickerSlotId = null"
             @place="placeFromPicker"
             @clear="clearFromPicker"
+        />
+
+        <MistakesModal
+            v-if="result"
+            :open="isMistakesOpen"
+            :mistakes="result.mistakes"
+            :images="imagesById"
+            @close="isMistakesOpen = false"
+            @zoom="lightboxImage = $event"
         />
 
         <ImageLightbox :image="lightboxImage" @close="lightboxImage = null" />

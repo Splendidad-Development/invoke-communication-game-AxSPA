@@ -24,7 +24,7 @@ defineProps<{
                 Hi {{ player.name }}
             </h1>
             <p
-                class="m-0 mb-5 text-center text-xl font-medium [text-shadow:0_2px_10px_rgb(0_0_0/.7)]"
+                class="m-0 mb-[34px] text-center text-xl font-medium [text-shadow:0_2px_10px_rgb(0_0_0/.7)]"
             >
                 Choose your group
             </p>
@@ -35,7 +35,7 @@ defineProps<{
                 <div
                     v-for="group in groups"
                     :key="group.number"
-                    class="flex flex-col items-center gap-4"
+                    class="relative flex flex-col items-center gap-4"
                 >
                     <Link
                         :href="create(group.number)"
@@ -51,7 +51,7 @@ defineProps<{
                         </span>
                     </Link>
                     <p
-                        class="m-0 w-[211px] text-center text-xs font-medium text-muted opacity-70"
+                        class="m-0 w-[211px] text-center text-xs font-medium text-muted opacity-70 sm:absolute sm:top-full sm:mt-4"
                     >
                         <template
                             v-for="(part, index) in group.caption"

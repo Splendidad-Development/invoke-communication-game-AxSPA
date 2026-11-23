@@ -32,7 +32,10 @@ class BoardController extends Controller
             'layout' => $board->layout(),
             'slotIds' => $board->slotIds(),
             'images' => $board->images(),
-            'result' => $arrangement?->only('id', 'placements', 'pattern', 'score'),
+            'result' => $arrangement === null ? null : [
+                ...$arrangement->only('id', 'placements', 'pattern', 'score'),
+                'mistakes' => $board->mistakes($arrangement->placements),
+            ],
         ]);
     }
 }

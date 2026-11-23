@@ -24,9 +24,9 @@
     "semantic_hash": ""
   },
   "app/Http/Controllers/BoardController.php": {
-    "mtime": 1795429943.2944686,
-    "seen": 1795431771.507499,
-    "ast_hash": "ed3d5561851e228e016326b827a735cb",
+    "mtime": 1795433747.6021738,
+    "seen": 1795433799.604118,
+    "ast_hash": "98d453a0b57651619eb40dc89f6069ec",
     "semantic_hash": ""
   },
   "app/Http/Controllers/Controller.php": {
@@ -108,9 +108,9 @@
     "semantic_hash": ""
   },
   "app/SymphonyBoard.php": {
-    "mtime": 1795429943.295349,
-    "seen": 1795431771.5075068,
-    "ast_hash": "23622336d3a7eab0868a77defa8864c6",
+    "mtime": 1795433747.6025794,
+    "seen": 1795433799.6041322,
+    "ast_hash": "6f90bfd3e7e7e12bbc0f045d21eb4eb4",
     "semantic_hash": ""
   },
   "artisan": {
@@ -312,14 +312,14 @@
     "semantic_hash": ""
   },
   "resources/js/components/game/BoardSection.vue": {
-    "mtime": 1795431744.2185585,
-    "seen": 1795431771.507523,
-    "ast_hash": "8a8db17327b79602460c2652ae4349a4",
+    "mtime": 1795433747.6041481,
+    "seen": 1795433799.6041589,
+    "ast_hash": "cf048c6a4bfa4aaf9c6dffe36d216581",
     "semantic_hash": ""
   },
   "resources/js/components/game/BoardSlot.vue": {
-    "mtime": 1795431744.218367,
-    "seen": 1795431771.507524,
+    "mtime": 1795431942.5576293,
+    "seen": 1795433799.60416,
     "ast_hash": "fb425a92976d7e5d6e475ad4261da151",
     "semantic_hash": ""
   },
@@ -330,9 +330,9 @@
     "semantic_hash": ""
   },
   "resources/js/components/game/GameModal.vue": {
-    "mtime": 1795429943.3125174,
-    "seen": 1795431771.507524,
-    "ast_hash": "b4435d93f3cc90247d96167eec1f2fd4",
+    "mtime": 1795433747.6045868,
+    "seen": 1795433799.604162,
+    "ast_hash": "3c92e59d15e183d23859a045e257d1d7",
     "semantic_hash": ""
   },
   "resources/js/components/game/ImageLightbox.vue": {
@@ -354,15 +354,15 @@
     "semantic_hash": ""
   },
   "resources/js/components/game/LeaderboardButton.vue": {
-    "mtime": 1795429943.3127759,
-    "seen": 1795431771.507526,
-    "ast_hash": "a61c0909fdecfd226fe5a2657ede555c",
+    "mtime": 1795433747.6051269,
+    "seen": 1795433799.604165,
+    "ast_hash": "12e236a4e97bf72318f3d99b6d171802",
     "semantic_hash": ""
   },
   "resources/js/components/game/LeaderboardModal.vue": {
-    "mtime": 1795429943.3128874,
-    "seen": 1795431771.5075269,
-    "ast_hash": "f80523c5e92addc52666b54bd0341982",
+    "mtime": 1795433747.6057374,
+    "seen": 1795433799.6041658,
+    "ast_hash": "49c56758de495178005c6429200e0cdb",
     "semantic_hash": ""
   },
   "resources/js/components/game/PlayIcon.vue": {
@@ -420,9 +420,9 @@
     "semantic_hash": ""
   },
   "resources/js/layouts/GameLayout.vue": {
-    "mtime": 1795429943.3135977,
-    "seen": 1795431771.507531,
-    "ast_hash": "7cc244eab2ccf3900bf31bfbc9779fbf",
+    "mtime": 1795433747.606459,
+    "seen": 1795433799.604175,
+    "ast_hash": "1cd4f2320573581763f2786ad0f6995a",
     "semantic_hash": ""
   },
   "resources/js/lib/game.ts": {
@@ -450,15 +450,15 @@
     "semantic_hash": ""
   },
   "resources/js/pages/game/Board.vue": {
-    "mtime": 1795431744.2188735,
-    "seen": 1795431771.507533,
-    "ast_hash": "f7a25b32a1499109ee631aa885f7f24b",
+    "mtime": 1795433747.60747,
+    "seen": 1795433799.604179,
+    "ast_hash": "a242b9d5e922b9b353b3d8d7903a617f",
     "semantic_hash": ""
   },
   "resources/js/pages/game/Groups.vue": {
-    "mtime": 1795429943.3141725,
-    "seen": 1795431771.507534,
-    "ast_hash": "72406bd244fc013740d788342b0d7368",
+    "mtime": 1795433747.6083791,
+    "seen": 1795433799.604179,
+    "ast_hash": "a955cd10f570b42fe92c10f6f5b06d26",
     "semantic_hash": ""
   },
   "resources/js/pages/game/Question.vue": {
@@ -468,9 +468,9 @@
     "semantic_hash": ""
   },
   "resources/js/pages/game/Welcome.vue": {
-    "mtime": 1795429943.3142936,
-    "seen": 1795431771.507534,
-    "ast_hash": "cc8124694336e80a08074b19f52e5569",
+    "mtime": 1795433747.6088302,
+    "seen": 1795433799.604181,
+    "ast_hash": "9da4cf3d677de5e22c4acc272deeb473",
     "semantic_hash": ""
   },
   "resources/js/types/auth.ts": {
@@ -480,9 +480,9 @@
     "semantic_hash": ""
   },
   "resources/js/types/game.ts": {
-    "mtime": 1795429943.314431,
-    "seen": 1795431771.5075352,
-    "ast_hash": "03eb45a34d46a2ab97b4e7861b65f27b",
+    "mtime": 1795433747.60939,
+    "seen": 1795433799.604183,
+    "ast_hash": "856a7329d3fb1dc54c8d03337dad9d0a",
     "semantic_hash": ""
   },
   "resources/js/types/global.d.ts": {
@@ -528,9 +528,9 @@
     "semantic_hash": ""
   },
   "tests/Feature/GameFlowTest.php": {
-    "mtime": 1795429943.3162963,
-    "seen": 1795431771.50754,
-    "ast_hash": "dc24f9bf829ea3c11767e731590333fd",
+    "mtime": 1795433747.609892,
+    "seen": 1795433799.604189,
+    "ast_hash": "1b64d4818ce9b5b831b15485d9ef3ee8",
     "semantic_hash": ""
   },
   "tests/Feature/SymphonyBoardTest.php": {
@@ -564,9 +564,9 @@
     "semantic_hash": ""
   },
   "vite.config.ts": {
-    "mtime": 1795429943.31669,
-    "seen": 1795431771.5075421,
-    "ast_hash": "5035c407325de11a7ffe625002f1ce3a",
+    "mtime": 1795433747.610195,
+    "seen": 1795433799.6041942,
+    "ast_hash": "4fb560db0afb2f767773ab781d0ae225",
     "semantic_hash": ""
   },
   "public/robots.txt": {
@@ -741,6 +741,12 @@
     "mtime": 1795429943.3116667,
     "seen": 1795431771.5075562,
     "ast_hash": "5cd46d57d0e7e93b32002dce8f4f2c6e",
+    "semantic_hash": ""
+  },
+  "resources/js/components/game/MistakesModal.vue": {
+    "mtime": 1795433684.3331738,
+    "seen": 1795433799.604167,
+    "ast_hash": "d94f87ea149fc82070915681bd889f6a",
     "semantic_hash": ""
   },
   "package-lock.json": {

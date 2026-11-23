@@ -13,11 +13,11 @@ withDefaults(
 
 <template>
     <div
-        class="relative min-h-screen bg-night font-sans text-cream antialiased"
+        class="relative min-h-screen bg-night font-sans leading-normal text-cream antialiased"
     >
         <div class="fixed inset-0 -z-0 overflow-hidden" aria-hidden="true">
             <div
-                class="absolute inset-0 bg-cover bg-center"
+                class="absolute inset-0 bg-cover bg-right"
                 style="background-image: url('/images/game/background.jpg')"
                 :class="focused && 'scale-105 blur-[5px]'"
             />
@@ -36,7 +36,7 @@ withDefaults(
 
         <LeaderboardButton
             v-if="!focused"
-            class="fixed top-[calc(env(safe-area-inset-top,0px)+16px)] right-4 z-40 bg-night/80 backdrop-blur-md"
+            class="fixed top-[calc(env(safe-area-inset-top,0px)+24px)] right-6 z-40 bg-night/80 backdrop-blur-md"
         />
 
         <div class="relative">

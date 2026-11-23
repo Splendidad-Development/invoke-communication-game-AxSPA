@@ -14,6 +14,15 @@
 @theme {
     --breakpoint-board: 67.5625rem; /* 1081px: the five-column board */
 
+    /* Figma text uses the font's own line height ("auto"), not Tailwind's 1.25–1.5 defaults. */
+    --leading-normal: normal;
+    --text-xs--line-height: normal;
+    --text-sm--line-height: normal;
+    --text-base--line-height: normal;
+    --text-lg--line-height: normal;
+    --text-xl--line-height: normal;
+    --text-2xl--line-height: normal;
+
     --color-night: #14152b;
     --color-panel: rgb(20 21 43 / 0.78);
     --color-panel-solid: #1b1c38;
@@ -74,7 +83,7 @@
     }
 
     .btn-ghost {
-        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-7 py-3.5 text-base font-bold text-cream shadow-[inset_0_0_0_2px_rgb(255_255_255/.35)] transition hover:text-gold hover:shadow-[inset_0_0_0_2px_var(--color-gold)] active:scale-[.97] disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:text-cream disabled:hover:shadow-[inset_0_0_0_2px_rgb(255_255_255/.35)];
+        @apply inline-flex cursor-pointer items-center justify-center gap-2 rounded-full px-[30px] py-4 text-base font-bold text-cream shadow-[inset_0_0_0_2px_rgb(255_255_255/.35)] transition hover:text-gold hover:shadow-[inset_0_0_0_2px_var(--color-gold)] active:scale-[.97] disabled:cursor-not-allowed disabled:opacity-45 disabled:hover:text-cream disabled:hover:shadow-[inset_0_0_0_2px_rgb(255_255_255/.35)];
     }
 
     /* Gold brush block behind display headings. */

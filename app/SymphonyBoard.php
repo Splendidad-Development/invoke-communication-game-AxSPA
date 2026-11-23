@@ -139,6 +139,37 @@ class SymphonyBoard
     }
 
     /**
+     * The boxes a scored arrangement got wrong, in board order: the image the player put there and where it belongs.
+     * Only sent with a submitted arrangement, so the answers stay hidden while the board is in play.
+     *
+     * @param  array<string, int>  $placements
+     * @return list<array{slotId: string, imageId: ?int, placedIn: string, belongsIn: ?string}>
+     */
+    public function mistakes(array $placements): array
+    {
+        return array_values($this->slots()
+            ->reject(fn (string $sectionKey, string $slotId): bool => $this->isCorrect($slotId, $placements[$slotId] ?? null))
+            ->map(fn (string $sectionKey, string $slotId): array => [
+                'slotId' => $slotId,
+                'imageId' => $placements[$slotId] ?? null,
+                'placedIn' => $this->sections[$sectionKey]['title'],
+                'belongsIn' => $this->sectionTitleFor($placements[$slotId] ?? null),
+            ])
+            ->all());
+    }
+
+    private function sectionTitleFor(?int $imageId): ?string
+    {
+        foreach ($this->sections as $section) {
+            if (in_array($imageId, $section['answers'], true)) {
+                return $section['title'];
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * The board layout for the client. Correct answers are deliberately left out.
      *
      * @return list<array{key: string, tone: string, title: string, description: ?string, rows: list<list<array{key: string, title: string, tone: string, slots: list<string>}>>}>

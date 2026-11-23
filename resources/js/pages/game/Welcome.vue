@@ -5,7 +5,7 @@ import { store } from '@/routes/players';
 </script>
 
 <template>
-    <Head title="Communication game" />
+    <Head title="Communication flow" />
     <GameLayout>
         <section
             class="flex min-h-screen flex-col items-center justify-end gap-5 px-4 pt-8 pb-[12vh] text-center"
@@ -13,9 +13,9 @@ import { store } from '@/routes/players';
         >
             <h1
                 id="welcome-title"
-                class="brush m-0 text-[clamp(2.6rem,6.4vw,5.75rem)]"
+                class="brush m-0 mb-[.145em] text-[clamp(2.6rem,6.4vw,5.75rem)]"
             >
-                Communication game
+                Communication Flow
             </h1>
             <p
                 class="m-0 text-[clamp(1rem,1.6vw,1.375rem)] font-semibold [text-shadow:0_2px_12px_rgb(0_0_0/.6)]"
@@ -30,7 +30,7 @@ import { store } from '@/routes/players';
                 #default="{ errors, processing }"
             >
                 <div
-                    class="flex items-center gap-2.5 rounded-full bg-night/75 py-2 pr-2 pl-6 shadow-[0_10px_40px_rgb(0_0_0/.4)] backdrop-blur-md focus-within:shadow-[0_0_0_3px_var(--color-gold),0_10px_40px_rgb(0_0_0/.4)]"
+                    class="flex items-center gap-2.5 rounded-full border border-white bg-night/75 py-2 pr-2 pl-6 shadow-[0_10px_40px_rgb(0_0_0/.4)] backdrop-blur-md"
                 >
                     <label for="player-name" class="sr-only">Your name</label>
                     <input

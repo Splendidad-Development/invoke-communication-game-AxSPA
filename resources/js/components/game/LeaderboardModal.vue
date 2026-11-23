@@ -103,7 +103,11 @@ const isPlaying = (id: number): boolean =>
                         <th class="w-11 border-b border-white/12 px-2 py-1">
                             #
                         </th>
-                        <th class="border-b border-white/12 px-2 py-1">Name</th>
+                        <th
+                            class="w-[200px] border-b border-white/12 px-2 py-1"
+                        >
+                            Name
+                        </th>
                         <th
                             class="hidden w-[100px] border-b border-white/12 px-2 py-1 sm:table-cell"
                         >
@@ -119,9 +123,16 @@ const isPlaying = (id: number): boolean =>
                         >
                             Notes
                         </th>
-                        <th class="w-[60px] border-b border-white/12 px-2 py-1">
+                        <th
+                            class="w-[60px] border-b border-white/12 py-1 pr-0 pl-4"
+                        >
                             <span class="sr-only">Play</span>
                         </th>
+                        <!-- Spare width goes here, so the columns keep the design's widths. -->
+                        <th
+                            class="border-b border-white/12"
+                            aria-hidden="true"
+                        />
                     </tr>
                 </thead>
                 <tbody>
@@ -172,7 +183,7 @@ const isPlaying = (id: number): boolean =>
                                 "
                             />
                         </td>
-                        <td class="border-b border-white/6 px-2 py-2.5">
+                        <td class="border-b border-white/6 py-2.5 pr-0 pl-4">
                             <button
                                 type="button"
                                 class="mx-auto grid size-[38px] cursor-pointer place-items-center rounded-full text-ink"
@@ -194,6 +205,10 @@ const isPlaying = (id: number): boolean =>
                                 />
                             </button>
                         </td>
+                        <td
+                            class="border-b border-white/6"
+                            aria-hidden="true"
+                        />
                     </tr>
                 </tbody>
             </table>

@@ -13,7 +13,7 @@ const leaderboard = useLeaderboard();
         type="button"
         :class="
             cn(
-                'inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-full bg-white/8 px-4 py-[9px] text-sm font-bold text-cream shadow-[inset_0_0_0_1.5px_rgb(255_210_31/.55)] hover:bg-gold hover:text-ink',
+                'inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-full bg-white/8 px-[17.5px] py-[10.5px] text-sm font-bold text-cream shadow-[inset_0_0_0_1.5px_rgb(255_210_31/.55)] hover:bg-gold hover:text-ink',
                 $props.class,
                 leaderboard.isOpen.value && 'bg-gold text-ink',
             )

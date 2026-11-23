@@ -70,7 +70,7 @@ onBeforeUnmount(() => document.removeEventListener('keydown', onKeydown));
     <Teleport v-if="isMounted" to="body">
         <div
             v-if="open"
-            class="fixed inset-0 z-100 flex items-center justify-center bg-[rgb(10_10_24/.72)] p-4 backdrop-blur-md"
+            class="fixed inset-0 z-100 flex items-center justify-center bg-[rgb(10_10_24/.72)] p-4 leading-normal"
             role="dialog"
             aria-modal="true"
             :aria-label="label"

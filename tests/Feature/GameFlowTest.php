@@ -102,7 +102,12 @@ it('saves the arrangement with the order of images and the server-side score', f
         ->and($arrangement->player_id)->toBe($answer->player_id);
 
     $this->get(route('arrangements.show', $arrangement))
-        ->assertInertia(fn (Assert $page) => $page->component('game/Board')->where('result.score', 23));
+        ->assertInertia(fn (Assert $page) => $page->component('game/Board')
+            ->where('result.score', 23)
+            ->where('result.mistakes', [
+                ['slotId' => 'unmet-0', 'imageId' => 25, 'placedIn' => 'Unmet need', 'belongsIn' => 'TEAEs of EMMs'],
+                ['slotId' => 'teae-0', 'imageId' => 1, 'placedIn' => 'TEAEs of EMMs', 'belongsIn' => 'Unmet need'],
+            ]));
 });
 
 it('rejects a board with missing or repeated images', function (array $placements) {

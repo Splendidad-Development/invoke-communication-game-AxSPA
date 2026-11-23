@@ -11,6 +11,8 @@ defineProps<{
     correctness: (slotId: string) => boolean | null;
     playingSlotId: string | null;
     targetSlotId?: string | null;
+    /** Section titles are the answers, so they only show once the board is scored. */
+    showLabel: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -26,6 +28,7 @@ const emit = defineEmits<{
 <template>
     <div class="flex w-full flex-col items-center gap-[7px]">
         <div
+            v-if="showLabel"
             class="max-w-full rounded-xs px-2.5 py-1 text-center text-[13px] font-bold text-ink"
             :class="sectionToneClasses[section.tone]"
         >

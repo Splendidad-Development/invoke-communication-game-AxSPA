@@ -39,6 +39,18 @@ export type ArrangementResult = {
     /** One character per slot in board order: "1" correct, "0" wrong. */
     pattern: string;
     score: number;
+    /** The boxes the player got wrong, in board order. */
+    mistakes: Mistake[];
+};
+
+export type Mistake = {
+    slotId: string;
+    /** The image the player put in this box. */
+    imageId: number | null;
+    /** Title of the box the image was put in. */
+    placedIn: string;
+    /** Title of the box the image belongs in. */
+    belongsIn: string | null;
 };
 
 export type LeaderboardEntry = {
