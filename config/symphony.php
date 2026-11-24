@@ -14,8 +14,6 @@
 |
 */
 
-$diseaseControlImages = [7, 8, 9, 10, 11, 12];
-
 return [
 
     'image_count' => 25,
@@ -64,8 +62,9 @@ return [
         'ibd' => ['title' => 'Screening for IBD in axSpA', 'tone' => 'add', 'slots' => 1, 'answers' => [3]],
         'rtb' => ['title' => 'Reason to Believe', 'tone' => 'rtb', 'slots' => 1, 'answers' => [2]],
         'ctrl' => ['title' => 'Control that’s fast and shown to last', 'tone' => 'ctrl', 'slots' => 2, 'answers' => [5, 6]],
-        'dc1' => ['title' => 'Disease control (RCT)', 'tone' => 'rct', 'slots' => 3, 'answers' => $diseaseControlImages],
-        'dc2' => ['title' => 'Disease control (RCT)', 'tone' => 'rct', 'slots' => 3, 'answers' => $diseaseControlImages],
+        // Left: ASAS40 response (SELECT-AXIS 1 & 2). Right: ASDAS LDA (SELECT-AXIS 1 & 2). Per the AxSPA content deck.
+        'dc1' => ['title' => 'Disease control (RCT)', 'tone' => 'rct', 'slots' => 3, 'answers' => [7, 8, 9]],
+        'dc2' => ['title' => 'Disease control (RCT)', 'tone' => 'rct', 'slots' => 3, 'answers' => [10, 11, 12]],
         'crohn' => ['title' => 'Crohn’s disease', 'tone' => 'rct', 'slots' => 1, 'answers' => [13]],
         'uc' => ['title' => 'Ulcerative colitis', 'tone' => 'rct', 'slots' => 1, 'answers' => [14]],
         'nma' => ['title' => 'NMA', 'tone' => 'add', 'slots' => 1, 'answers' => [15]],

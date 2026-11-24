@@ -107,7 +107,8 @@ it('saves the arrangement with the order of images and the server-side score', f
             ->where('result.mistakes', [
                 ['slotId' => 'unmet-0', 'imageId' => 25, 'placedIn' => 'Unmet need', 'belongsIn' => 'TEAEs of EMMs'],
                 ['slotId' => 'teae-0', 'imageId' => 1, 'placedIn' => 'TEAEs of EMMs', 'belongsIn' => 'Unmet need'],
-            ]));
+            ])
+            ->where('result.solution', ArrangementFactory::perfectPlacements()));
 });
 
 it('rejects a board with missing or repeated images', function (array $placements) {
