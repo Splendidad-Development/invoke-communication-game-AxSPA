@@ -26,7 +26,7 @@ return [
     */
     'groups' => [
         1 => [
-            'persona' => 'Traditionalist: cycles TNFis, hesitant to use JAKis due to safety concerns (1st call)',
+            'persona' => 'Traditionalist: Cycles TNFis, hesitant to use JAKis due to safety concerns (1st call)',
             'caption' => [
                 ['text' => 'Traditionalist: '],
                 ['text' => 'Cycles TNFis', 'bold' => true],
@@ -37,7 +37,7 @@ return [
             'question' => 'How would you address this HCP’s challenge in your call? Describe your approach.',
         ],
         2 => [
-            'persona' => 'Customizer: switch from 1L TNFis to IL-17is in 2L, reserves JAKis for 3L+ (2nd+ call)',
+            'persona' => 'Customizer: Switch from 1L TNFis to IL-17is in 2L, reserves JAKis for 3L+ (2nd+ call)',
             'caption' => [
                 ['text' => 'Customizer: '],
                 ['text' => 'Switch from 1L TNFis to IL-17is in 2L', 'bold' => true],
@@ -46,7 +46,7 @@ return [
             'question' => 'Which evidence would you lead with for this HCP, and why?',
         ],
         3 => [
-            'persona' => 'Pioneer: prefers IL-17i over JAKis as 1L due to long-term safety (1st call)',
+            'persona' => 'Pioneer: Prefers IL-17i over JAKis as 1L due to long-term safety (1st call)',
             'caption' => [
                 ['text' => 'Pioneer: '],
                 ['text' => 'Prefers IL-17i over JAKis', 'bold' => true],
@@ -83,7 +83,7 @@ return [
             'key' => 'c1',
             'tone' => 'unmet',
             'title' => 'Unmet need',
-            'description' => 'axSpA is a multifaceted disease primarily characterised by chronic, inflammatory back pain, which may be accompanied by EMMs',
+            'description' => 'axSpA is a multifaceted disease primarily characterized by chronic, inflammatory back pain, which may be accompanied by EMMs',
             'rows' => [['unmet'], ['emms'], ['ibd']],
         ],
         [
