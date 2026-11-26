@@ -63,6 +63,12 @@ return [
     // Abbreviations used in the group personas, shown in the bottom-left corner of the group picker.
     'footnote' => '1L, first-line; IL, interleukin; i, inhibitor; TNF, tumor necrosis factor.',
 
+    // The /export page (every player with their answers, as PDF / Excel). Without EXPORT_PASSWORD it is turned off (404).
+    'export' => [
+        'title' => 'RINVOQ axSpA Communication Game',
+        'password' => env('EXPORT_PASSWORD'),
+    ],
+
     'sections' => [
         'unmet' => ['title' => 'Unmet need', 'tone' => 'unmet', 'slots' => 1, 'answers' => [1]],
         'emms' => ['title' => 'EMMs in axSpA', 'tone' => 'add', 'slots' => 1, 'answers' => [4]],
