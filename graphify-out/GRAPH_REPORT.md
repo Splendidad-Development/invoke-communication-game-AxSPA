@@ -1,17 +1,17 @@
 # Graph Report - invoke-communication-game  (2026-11-26)
 
 ## Corpus Check
-- 104 files · ~24,964 words
+- 104 files · ~25,034 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 23 file(s) not represented in the graph (top: (none) 17, .example 1, .pptx 1)
 
 ## Summary
-- 715 nodes · 1131 edges · 56 communities (33 shown, 23 thin omitted)
-- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 46 edges (avg confidence: 0.85)
+- 715 nodes · 1130 edges · 51 communities (32 shown, 19 thin omitted)
+- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 45 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `6a37227d`
+- Built from commit: `dec587da`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -19,7 +19,7 @@
 - SymphonyBoard
 - ResultModal.vue
 - package.json
-- App\Models\Arrangement
+- App\Models\Answer
 - GameFlowTest.php
 - Illuminate\Database\Schema\Blueprint
 - Board.vue
@@ -28,7 +28,7 @@
 - compilerOptions
 - resources_js_types_index_gameimage
 - AppServiceProvider.php
-- index.ts
+- vue
 - scripts
 - useStickyEdgeScroll
 - SymphonyBoard.php
@@ -45,22 +45,16 @@
 - LeaderboardModal.vue
 - extra
 - pnpm-workspace.yaml
-- User.php
+- useSymphonyPlayer
 - symphony.ts
 - BoardSlot.vue
-- vue
 - LeaderboardButton.vue
 - GameModal.vue
-- UserFactory.php
-- ExportTest.php
-- PlayerExport.php
-- Answer
-- Illuminate\Database\Eloquent\Factories\Factory
 - lib/game.ts
 - SymphonyNotes.vue
 
 ## God Nodes (most connected - your core abstractions)
-1. `SymphonyBoard` - 32 edges
+1. `SymphonyBoard` - 34 edges
 2. `compilerOptions` - 19 edges
 3. `vue` - 17 edges
 4. `PlayerExport` - 14 edges
@@ -68,8 +62,8 @@
 6. `Arrangement` - 12 edges
 7. `require-dev` - 12 edges
 8. `playAs()` - 11 edges
-9. `Answer` - 11 edges
-10. `Player` - 11 edges
+9. `Player` - 11 edges
+10. `Answer` - 11 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `{closure#2}()` --references--> `Arrangement`  [EXTRACTED]
@@ -78,19 +72,19 @@
   app/PlayerExport.php → app/SymphonyBoard.php
 - `ExportController` --inherits--> `Controller`  [EXTRACTED]
   app/Http/Controllers/ExportController.php → app/Http/Controllers/Controller.php
-- `barClass()` --calls--> `cn()`  [EXTRACTED]
-  resources/js/components/game/SymphonyNotes.vue → resources/js/lib/utils.ts
-- `AnswerController` --inherits--> `Controller`  [EXTRACTED]
-  app/Http/Controllers/AnswerController.php → app/Http/Controllers/Controller.php
+- `useSymphonyPlayer()` --calls--> `performSymphony()`  [EXTRACTED]
+  resources/js/composables/useSymphonyPlayer.ts → resources/js/lib/symphony.ts
+- `play()` --calls--> `performSymphony()`  [EXTRACTED]
+  resources/js/composables/useSymphonyPlayer.ts → resources/js/lib/symphony.ts
 
 ## Import Cycles
 - None detected.
 
-## Communities (56 total, 23 thin omitted)
+## Communities (51 total, 19 thin omitted)
 
 ### Community 0 - "SymphonyBoard"
 Cohesion: 0.05
-Nodes (16): AnswerController, ArrangementController, BoardController, Controller, GameController, PlayerController, EnsurePlayerSession, {closure#1}() (+8 more)
+Nodes (15): AnswerController, ArrangementController, BoardController, Controller, GameController, PlayerController, EnsurePlayerSession, {closure#1}() (+7 more)
 
 ### Community 1 - "ResultModal.vue"
 Cohesion: 0.19
@@ -98,11 +92,15 @@ Nodes (11): close(), emit, hasPlayed, isPlaying, leaderboard, notes, openLeaderb
 
 ### Community 2 - "package.json"
 Cohesion: 0.05
-Nodes (52): dependencies, clsx@^2.1.1, concurrently@^10.0.3, @inertiajs/vite@^3.0.0, laravel-vite-plugin@^3.1, tailwind-merge@^3.2.0, tailwindcss@^4.1.1, @tailwindcss/vite@^4.1.11 (+44 more)
+Nodes (54): dependencies, clsx@^2.1.1, concurrently@^10.0.3, @inertiajs/vite@^3.0.0, laravel-vite-plugin@^3.1, tailwind-merge@^3.2.0, tailwindcss@^4.1.1, @tailwindcss/vite@^4.1.11 (+46 more)
+
+### Community 3 - "App\Models\Answer"
+Cohesion: 0.05
+Nodes (12): Answer, Arrangement, Player, User, {closure#1}(), {closure#2}(), {closure#3}(), AnswerFactory (+4 more)
 
 ### Community 4 - "GameFlowTest.php"
 Cohesion: 0.07
-Nodes (26): ArrangementFactory, {closure#11}(), {closure#12}(), {closure#13}(), {closure#14}(), {closure#15}(), {closure#16}(), {closure#17}() (+18 more)
+Nodes (31): asExporter(), {closure#4}(), {closure#5}(), {closure#6}(), {closure#7}(), {closure#10}(), {closure#11}(), {closure#12}() (+23 more)
 
 ### Community 5 - "Illuminate\Database\Schema\Blueprint"
 Cohesion: 0.10
@@ -128,9 +126,9 @@ Nodes (20): compilerOptions, allowJs, esModuleInterop, forceConsistentCasingInFi
 Cohesion: 0.18
 Nodes (4): emit, emit, emit, BoardColumn
 
-### Community 12 - "index.ts"
-Cohesion: 0.13
-Nodes (3): @inertiajs/vue3@^3.0.0, @inertiajs/vue3, answer
+### Community 12 - "vue"
+Cohesion: 0.06
+Nodes (18): @inertiajs/vue3@^3.0.0, @inertiajs/vue3, vue, available, confirm(), emit, onKeydown(), props (+10 more)
 
 ### Community 13 - "scripts"
 Cohesion: 0.15
@@ -184,59 +182,51 @@ Nodes (8): filter, filters, isPlaying(), leaderboard, player, playKey(), rows, s
 Cohesion: 0.67
 Nodes (3): extra, laravel, dont-discover
 
+### Community 42 - "useSymphonyPlayer"
+Cohesion: 1.00
+Nodes (4): useSymphonyPlayer(), play(), stop(), toggle()
+
 ### Community 43 - "symphony.ts"
-Cohesion: 0.23
-Nodes (14): currentStep, playingKey, useSymphonyPlayer(), play(), stop(), toggle(), CHORDS, hz() (+6 more)
+Cohesion: 0.27
+Nodes (10): currentStep, playingKey, CHORDS, hz(), MELODY, pad(), performSymphony(), reverbImpulse() (+2 more)
 
 ### Community 44 - "BoardSlot.vue"
-Cohesion: 0.15
-Nodes (13): vue-draggable-plus@^0.6.1, vue-draggable-plus, emit, { isPhone, usesDragHandle }, list, onAdd(), props, DeviceLayout (+5 more)
-
-### Community 45 - "vue"
-Cohesion: 0.17
-Nodes (7): vue, answerCount, boardCount, ExportAnswer, ExportPlayer, props, *.vue
+Cohesion: 0.16
+Nodes (12): emit, { isPhone, usesDragHandle }, list, onAdd(), props, DeviceLayout, isPhone, isTouch (+4 more)
 
 ### Community 46 - "LeaderboardButton.vue"
 Cohesion: 0.33
 Nodes (5): isLoading, isOpen, useLeaderboard(), open(), refresh()
 
 ### Community 47 - "GameModal.vue"
-Cohesion: 0.13
-Nodes (20): activate(), deactivate(), emit, id, isMounted, isTopmost(), onKeydown(), openStack (+12 more)
-
-### Community 50 - "ExportTest.php"
-Cohesion: 0.27
-Nodes (5): asExporter(), {closure#4}(), {closure#5}(), {closure#6}(), {closure#7}()
-
-### Community 52 - "Answer"
-Cohesion: 0.25
-Nodes (3): Answer, {closure#1}(), {closure#10}()
+Cohesion: 0.23
+Nodes (12): activate(), deactivate(), emit, id, isMounted, isTopmost(), onKeydown(), openStack (+4 more)
 
 ### Community 54 - "lib/game.ts"
-Cohesion: 0.21
-Nodes (8): emit, props, slotStyle, colourKey, dragHandleOptions, RESULT_PLAYER_KEY, sectionToneClasses, verdictFor()
+Cohesion: 0.24
+Nodes (7): emit, props, slotStyle, colourKey, RESULT_PLAYER_KEY, sectionToneClasses, verdictFor()
 
 ### Community 58 - "SymphonyNotes.vue"
 Cohesion: 0.31
 Nodes (5): leaderboard, barClass(), props, noteHeight(), cn()
 
 ## Knowledge Gaps
-- **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **19 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `vue` connect `vue` to `ResultModal.vue`, `package.json`, `Board.vue`, `types/game.ts`, `symphony.ts`, `BoardSlot.vue`, `index.ts`, `LeaderboardButton.vue`, `GameModal.vue`, `useStickyEdgeScroll`, `useBoardArrangement`, `lib/game.ts`, `LeaderboardModal.vue`?**
+- **Why does `vue` connect `vue` to `ResultModal.vue`, `package.json`, `Board.vue`, `types/game.ts`, `symphony.ts`, `BoardSlot.vue`, `LeaderboardButton.vue`, `GameModal.vue`, `useStickyEdgeScroll`, `useBoardArrangement`, `lib/game.ts`, `LeaderboardModal.vue`?**
   _High betweenness centrality (0.050) - this node is a cross-community bridge._
 - **Should `SymphonyBoard` be split into smaller, more focused modules?**
-  _Cohesion score 0.05308641975308642 - nodes in this community are weakly interconnected._
-- **Why does `SymphonyBoard` connect `SymphonyBoard` to `AppServiceProvider.php`, `GameFlowTest.php`, `PlayerExport`, `SymphonyBoard.php`?**
-  _High betweenness centrality (0.044) - this node is a cross-community bridge._
+  _Cohesion score 0.054527750730282376 - nodes in this community are weakly interconnected._
+- **Why does `SymphonyBoard` connect `SymphonyBoard` to `App\Models\Answer`, `GameFlowTest.php`, `AppServiceProvider.php`, `SymphonyBoard.php`, `PlayerExport`?**
+  _High betweenness centrality (0.049) - this node is a cross-community bridge._
 - **Should `package.json` be split into smaller, more focused modules?**
-  _Cohesion score 0.053109713487071976 - nodes in this community are weakly interconnected._
-- **Why does `@inertiajs/vue3` connect `index.ts` to `ResultModal.vue`, `package.json`, `Board.vue`, `vue`, `LeaderboardButton.vue`?**
+  _Cohesion score 0.0512987012987013 - nodes in this community are weakly interconnected._
+- **Why does `@inertiajs/vue3` connect `vue` to `ResultModal.vue`, `package.json`, `LeaderboardButton.vue`, `Board.vue`?**
   _High betweenness centrality (0.017) - this node is a cross-community bridge._
+- **Should `App\Models\Answer` be split into smaller, more focused modules?**
+  _Cohesion score 0.051560379918588875 - nodes in this community are weakly interconnected._
 - **Should `GameFlowTest.php` be split into smaller, more focused modules?**
-  _Cohesion score 0.07171717171717172 - nodes in this community are weakly interconnected._
-- **Should `Illuminate\Database\Schema\Blueprint` be split into smaller, more focused modules?**
-  _Cohesion score 0.10483870967741936 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.06826241134751773 - nodes in this community are weakly interconnected._
