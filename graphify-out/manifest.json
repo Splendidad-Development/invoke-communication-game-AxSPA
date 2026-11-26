@@ -12,8 +12,8 @@
     "semantic_hash": ""
   },
   "app/Http/Controllers/AnswerController.php": {
-    "mtime": 1795429943.2943544,
-    "seen": 1795431771.507498,
+    "mtime": 1795706422.4725971,
+    "seen": 1795706427.04334,
     "ast_hash": "9cb47d8883b28145b1f61071c25d54c8",
     "semantic_hash": ""
   },
@@ -36,9 +36,9 @@
     "semantic_hash": ""
   },
   "app/Http/Controllers/GameController.php": {
-    "mtime": 1795429943.2945852,
-    "seen": 1795431771.5075,
-    "ast_hash": "0c655c1764b4cb32df25003edee64a73",
+    "mtime": 1795706422.4727979,
+    "seen": 1795706427.043342,
+    "ast_hash": "b02f653a805eb640ecd02d92e43fab7d",
     "semantic_hash": ""
   },
   "app/Http/Controllers/PlayerController.php": {
@@ -108,9 +108,9 @@
     "semantic_hash": ""
   },
   "app/SymphonyBoard.php": {
-    "mtime": 1795606219.7010741,
-    "seen": 1795606830.168652,
-    "ast_hash": "e5dd6f7c48e355ba4a10d1c7e5558326",
+    "mtime": 1795705838.3038738,
+    "seen": 1795706427.04335,
+    "ast_hash": "d5b9398086a29b20f3e42ab902676d7f",
     "semantic_hash": ""
   },
   "artisan": {
@@ -204,9 +204,9 @@
     "semantic_hash": ""
   },
   "config/symphony.php": {
-    "mtime": 1795606219.701474,
-    "seen": 1795606830.1686609,
-    "ast_hash": "32df5f5238553917942bd62c41e731dc",
+    "mtime": 1795706422.4730442,
+    "seen": 1795706427.0433578,
+    "ast_hash": "b9acee329fbd48ad8bbe448fe8f5913e",
     "semantic_hash": ""
   },
   "database/factories/AnswerFactory.php": {
@@ -318,9 +318,9 @@
     "semantic_hash": ""
   },
   "resources/js/components/game/BoardSlot.vue": {
-    "mtime": 1795606805.0379384,
-    "seen": 1795606830.168671,
-    "ast_hash": "3911695ae61ff2161958c1e4a09a712d",
+    "mtime": 1795607478.2737153,
+    "seen": 1795706427.043369,
+    "ast_hash": "e1d65aa022bfc77f3a6ac0879be41af5",
     "semantic_hash": ""
   },
   "resources/js/components/game/ColourKey.vue": {
@@ -348,9 +348,9 @@
     "semantic_hash": ""
   },
   "resources/js/components/game/ImageTile.vue": {
-    "mtime": 1795606219.7037902,
-    "seen": 1795606830.168674,
-    "ast_hash": "4b961ef7246428f1b326e21888b2a193",
+    "mtime": 1795607478.2741733,
+    "seen": 1795706427.043372,
+    "ast_hash": "15b41158afdf255e3994ee2be81eff6b",
     "semantic_hash": ""
   },
   "resources/js/components/game/LeaderboardButton.vue": {
@@ -420,15 +420,15 @@
     "semantic_hash": ""
   },
   "resources/js/layouts/GameLayout.vue": {
-    "mtime": 1795433747.606459,
-    "seen": 1795433799.604175,
-    "ast_hash": "1cd4f2320573581763f2786ad0f6995a",
+    "mtime": 1795706422.4739394,
+    "seen": 1795706427.04338,
+    "ast_hash": "2b696b2212776ea3ce630282f485956a",
     "semantic_hash": ""
   },
   "resources/js/lib/game.ts": {
-    "mtime": 1795606219.7040393,
-    "seen": 1795606830.168682,
-    "ast_hash": "9d70d6f96b934bfb1eb8b4fcc0d35a60",
+    "mtime": 1795607478.2735353,
+    "seen": 1795706427.04338,
+    "ast_hash": "549d663258360a3f82deb2d3b2f8ee91",
     "semantic_hash": ""
   },
   "resources/js/lib/symphony.ts": {
@@ -450,21 +450,21 @@
     "semantic_hash": ""
   },
   "resources/js/pages/game/Board.vue": {
-    "mtime": 1795606814.1906087,
-    "seen": 1795606830.168684,
-    "ast_hash": "8690c2d8ff0e712e50288946f0e82d14",
+    "mtime": 1795607523.8417583,
+    "seen": 1795706427.0433831,
+    "ast_hash": "d7d175d547c35514da632b55d1a37179",
     "semantic_hash": ""
   },
   "resources/js/pages/game/Groups.vue": {
-    "mtime": 1795433747.6083791,
-    "seen": 1795433799.604179,
-    "ast_hash": "a955cd10f570b42fe92c10f6f5b06d26",
+    "mtime": 1795706422.4736674,
+    "seen": 1795706427.0433831,
+    "ast_hash": "ba2d1c31f2f0879846759dc5b764d048",
     "semantic_hash": ""
   },
   "resources/js/pages/game/Question.vue": {
-    "mtime": 1795429943.314233,
-    "seen": 1795431771.507534,
-    "ast_hash": "5265b3b706a0246ceb54970222f6dd86",
+    "mtime": 1795706422.4732666,
+    "seen": 1795706427.043384,
+    "ast_hash": "1950ac5550666426eecc80e055b58817",
     "semantic_hash": ""
   },
   "resources/js/pages/game/Welcome.vue": {
@@ -480,9 +480,9 @@
     "semantic_hash": ""
   },
   "resources/js/types/game.ts": {
-    "mtime": 1795606219.7050676,
-    "seen": 1795606830.168687,
-    "ast_hash": "b43b4892e53e1c99a3a7aaae2104e98d",
+    "mtime": 1795705838.3046381,
+    "seen": 1795706427.043385,
+    "ast_hash": "939816d2c35f61c46b0bf0442e3bc880",
     "semantic_hash": ""
   },
   "resources/js/types/global.d.ts": {
@@ -528,9 +528,9 @@
     "semantic_hash": ""
   },
   "tests/Feature/GameFlowTest.php": {
-    "mtime": 1795606219.705243,
-    "seen": 1795606830.168691,
-    "ast_hash": "745d2cfada769626478a3e0ef976ca54",
+    "mtime": 1795706422.4740925,
+    "seen": 1795706427.0433888,
+    "ast_hash": "ef024254cf03c53bbfd316ad24f6afe1",
     "semantic_hash": ""
   },
   "tests/Feature/SymphonyBoardTest.php": {
@@ -749,10 +749,16 @@
     "ast_hash": "d94f87ea149fc82070915681bd889f6a",
     "semantic_hash": ""
   },
-  "resources/js/composables/usePhoneLayout.ts": {
-    "mtime": 1795606804.6417933,
-    "seen": 1795606830.168679,
-    "ast_hash": "cc05ae9314f4cec456f67c9e83b812f3",
+  "resources/js/components/game/GripIcon.vue": {
+    "mtime": 1795607478.2778072,
+    "seen": 1795706427.04337,
+    "ast_hash": "9bd8959820afb472278e033c0558fab9",
+    "semantic_hash": ""
+  },
+  "resources/js/composables/useDeviceLayout.ts": {
+    "mtime": 1795607442.9501364,
+    "seen": 1795706427.0433779,
+    "ast_hash": "6828e6245f9af4f6d597414d8acfd360",
     "semantic_hash": ""
   },
   "package-lock.json": {

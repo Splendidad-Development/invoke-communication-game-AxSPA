@@ -23,6 +23,7 @@ return [
     /*
     | persona: shown on the question card and the board.
     | caption: shown under the group's card on the group picker; bold parts are highlighted.
+    | question: the challenge the group answers; example: a sample answer shown under it.
     */
     'groups' => [
         1 => [
@@ -34,7 +35,8 @@ return [
                 ['text' => 'safety concerns', 'bold' => true],
                 ['text' => ' (1st call)'],
             ],
-            'question' => 'How would you address this HCP’s challenge in your call? Describe your approach.',
+            'question' => 'Discuss and define your call objective considering the type of interaction, the HCP profile, and their belief on RINVOQ for axSpA. The call objective should include which key HCP beliefs you must challenge and which elements of the Brand Narrative you may need to use.',
+            'example' => 'For example: Explore why they believe in TNFi cycling vs JAKi; cover RINVOQ safety data',
         ],
         2 => [
             'persona' => 'Customizer: Switch from 1L TNFis to IL-17is in 2L, reserves JAKis for 3L+ (2nd+ call)',
@@ -43,7 +45,8 @@ return [
                 ['text' => 'Switch from 1L TNFis to IL-17is in 2L', 'bold' => true],
                 ['text' => ', reserves JAKis for 3L+ (2nd+ call)'],
             ],
-            'question' => 'Which evidence would you lead with for this HCP, and why?',
+            'question' => 'Discuss and define your call objective considering the type of interaction, the HCP profile, and their belief on RINVOQ for axSpA. The call objective should include which key HCP beliefs you must challenge and which elements of the Brand Narrative you may need to use.',
+            'example' => 'For example: Explore why they believe in TNFi cycling vs JAKi; cover RINVOQ safety data',
         ],
         3 => [
             'persona' => 'Pioneer: Prefers IL-17i over JAKis as 1L due to long-term safety (1st call)',
@@ -52,9 +55,13 @@ return [
                 ['text' => 'Prefers IL-17i over JAKis', 'bold' => true],
                 ['text' => ' as 1L due to long-term safety (1st call)'],
             ],
-            'question' => 'How would you open a short call with this HCP? Write your key message.',
+            'question' => 'Discuss and define your call objective considering the type of interaction, the HCP profile, and their belief on RINVOQ for axSpA. The call objective should include which key HCP beliefs you must challenge and which elements of the Brand Narrative you may need to use.',
+            'example' => 'For example: Explore why they believe in TNFi cycling vs JAKi; cover RINVOQ safety data',
         ],
     ],
+
+    // Abbreviations used in the group personas, shown in the bottom-left corner of the group picker.
+    'footnote' => '1L, first-line; IL, interleukin; i, inhibitor; TNF, tumor necrosis factor.',
 
     'sections' => [
         'unmet' => ['title' => 'Unmet need', 'tone' => 'unmet', 'slots' => 1, 'answers' => [1]],
