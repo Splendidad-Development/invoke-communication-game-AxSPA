@@ -108,9 +108,9 @@
     "semantic_hash": ""
   },
   "app/SymphonyBoard.php": {
-    "mtime": 1795777619.4915533,
-    "seen": 1795777633.32515,
-    "ast_hash": "69a87919b48444d55bd9e854274a08ae",
+    "mtime": 1795778902.6546137,
+    "seen": 1795778906.1598878,
+    "ast_hash": "ef5337e7c3c63b427d8f8a460e2fef7f",
     "semantic_hash": ""
   },
   "artisan": {
@@ -420,9 +420,9 @@
     "semantic_hash": ""
   },
   "resources/js/layouts/GameLayout.vue": {
-    "mtime": 1795706422.4739394,
-    "seen": 1795706427.04338,
-    "ast_hash": "2b696b2212776ea3ce630282f485956a",
+    "mtime": 1795778440.5862904,
+    "seen": 1795778906.159922,
+    "ast_hash": "8b735de98bc5f345c653a53b96e7eff3",
     "semantic_hash": ""
   },
   "resources/js/lib/game.ts": {
@@ -587,24 +587,6 @@
     "ast_hash": "6d65603fc671e2ab354f3ff070494594",
     "semantic_hash": ""
   },
-  "public/images/game/1.jpg": {
-    "mtime": 1795429943.299427,
-    "seen": 1795431771.507544,
-    "ast_hash": "cf9e596eb552135dfcac3eb433d242c8",
-    "semantic_hash": ""
-  },
-  "public/images/game/10.jpg": {
-    "mtime": 1795429943.299906,
-    "seen": 1795431771.507545,
-    "ast_hash": "77e190261da449b73bd71a03d3c437bd",
-    "semantic_hash": ""
-  },
-  "public/images/game/11.jpg": {
-    "mtime": 1795429943.3004775,
-    "seen": 1795431771.507545,
-    "ast_hash": "49c2b3d4e67342d1a59cbbb355715d4a",
-    "semantic_hash": ""
-  },
   "public/images/game/12.jpg": {
     "mtime": 1795429943.3008761,
     "seen": 1795431771.507545,
@@ -651,12 +633,6 @@
     "mtime": 1795429943.3037896,
     "seen": 1795431771.5075488,
     "ast_hash": "13f5d80b8b5282c070550f3849d763ad",
-    "semantic_hash": ""
-  },
-  "public/images/game/2.jpg": {
-    "mtime": 1795429943.3042884,
-    "seen": 1795431771.5075488,
-    "ast_hash": "ad3edc665a8dffdc315af807c12166f8",
     "semantic_hash": ""
   },
   "public/images/game/20.jpg": {
@@ -795,6 +771,30 @@
     "mtime": 1795777509.9022148,
     "seen": 1795777633.325221,
     "ast_hash": "fa4fbed4f0131fdbbb131446b2ac0d2d",
+    "semantic_hash": ""
+  },
+  "public/images/game/1.png": {
+    "mtime": 1795777761.1421568,
+    "seen": 1795778906.15994,
+    "ast_hash": "60fef2bf5c04c8860cc51078446db65b",
+    "semantic_hash": ""
+  },
+  "public/images/game/10.png": {
+    "mtime": 1795778047.1058204,
+    "seen": 1795778906.1599412,
+    "ast_hash": "70b808d544bf9135701b99bbb5cfd3fe",
+    "semantic_hash": ""
+  },
+  "public/images/game/11.png": {
+    "mtime": 1795778090.756145,
+    "seen": 1795778906.159942,
+    "ast_hash": "e0101947a5f1b3622e8005cd21709b09",
+    "semantic_hash": ""
+  },
+  "public/images/game/2.png": {
+    "mtime": 1795777892.0351765,
+    "seen": 1795778906.159948,
+    "ast_hash": "b2d93061014b389fde3288ecd9a9682d",
     "semantic_hash": ""
   },
   "package-lock.json": {
