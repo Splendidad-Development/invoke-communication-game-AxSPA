@@ -1,5 +1,5 @@
 {
-  "0": "SymphonyBoard",
+  "0": ".store",
   "1": "ResultModal.vue",
   "2": "package.json",
   "3": "App\\Models\\Answer",
@@ -41,13 +41,17 @@
   "39": "services.php",
   "40": "symphony.php",
   "41": "app.blade.php",
-  "42": "useSymphonyPlayer",
+  "42": "Illuminate\\Http\\Request",
   "43": "symphony.ts",
   "44": "BoardSlot.vue",
+  "45": "SymphonyBoard",
   "46": "LeaderboardButton.vue",
   "47": "GameModal.vue",
   "48": "players.blade.php",
   "49": "Illuminate\\Support\\Str",
-  "54": "lib/game.ts",
-  "58": "SymphonyNotes.vue"
+  "50": "web.php",
+  "51": "Question.vue",
+  "52": "@inertiajs/vue3",
+  "53": "DatabaseSeeder.php",
+  "54": "lib/game.ts"
 }

@@ -108,9 +108,9 @@
     "semantic_hash": ""
   },
   "app/SymphonyBoard.php": {
-    "mtime": 1795708606.2462177,
-    "seen": 1795708614.1026828,
-    "ast_hash": "43a0c272653415103d988224c9708eeb",
+    "mtime": 1795777619.4915533,
+    "seen": 1795777633.32515,
+    "ast_hash": "69a87919b48444d55bd9e854274a08ae",
     "semantic_hash": ""
   },
   "artisan": {
@@ -204,9 +204,9 @@
     "semantic_hash": ""
   },
   "config/symphony.php": {
-    "mtime": 1795708606.2459347,
-    "seen": 1795708614.1026921,
-    "ast_hash": "7b43419442939681fc991df77bc03556",
+    "mtime": 1795777619.4918542,
+    "seen": 1795777633.325161,
+    "ast_hash": "9839ce0b8adf325559c0148b3ffb8b1e",
     "semantic_hash": ""
   },
   "database/factories/AnswerFactory.php": {
@@ -330,15 +330,15 @@
     "semantic_hash": ""
   },
   "resources/js/components/game/GameModal.vue": {
-    "mtime": 1795606219.7025788,
-    "seen": 1795606830.168672,
-    "ast_hash": "70c807bb3c94837796c8099d89b9f2a4",
+    "mtime": 1795777170.6089284,
+    "seen": 1795777175.592993,
+    "ast_hash": "ce5d8da797507189f51e3aaf1a807485",
     "semantic_hash": ""
   },
   "resources/js/components/game/ImageLightbox.vue": {
-    "mtime": 1795606219.703492,
-    "seen": 1795606830.168673,
-    "ast_hash": "782b92ba5c234eac5707a45eeb65169f",
+    "mtime": 1795777170.6092257,
+    "seen": 1795777175.592994,
+    "ast_hash": "94d41f079135f7fd2e0b03f4405eb7b8",
     "semantic_hash": ""
   },
   "resources/js/components/game/ImagePickerModal.vue": {
@@ -725,12 +725,6 @@
     "ast_hash": "5a9e1b46a4c139fc651a35dda7a34f20",
     "semantic_hash": ""
   },
-  "public/images/game/8.jpg": {
-    "mtime": 1795429943.310408,
-    "seen": 1795431771.507555,
-    "ast_hash": "177bc6b814aaf657d71ee38ae99e09cb",
-    "semantic_hash": ""
-  },
   "public/images/game/9.jpg": {
     "mtime": 1795429943.3108823,
     "seen": 1795431771.507555,
@@ -795,6 +789,12 @@
     "mtime": 1795707212.004181,
     "seen": 1795707275.983496,
     "ast_hash": "1d7e4cb4bd11025ec669822d21ff02c9",
+    "semantic_hash": ""
+  },
+  "public/images/game/8.png": {
+    "mtime": 1795777509.9022148,
+    "seen": 1795777633.325221,
+    "ast_hash": "fa4fbed4f0131fdbbb131446b2ac0d2d",
     "semantic_hash": ""
   },
   "package-lock.json": {

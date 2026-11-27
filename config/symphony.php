@@ -7,7 +7,7 @@
 |
 | Content for the axSpA communication game. Each section is a labelled area
 | on the board with a number of boxes ("slots") and the image numbers that
-| are correct for it. Images live in public/images/game/{number}.jpg.
+| are correct for it. Images live in public/images/game/{number}.jpg (or {number}.png, which wins when both exist).
 |
 | The board's slot order (columns → rows → sections → slots) is also the
 | order in which the symphony is played back, one note per slot.
